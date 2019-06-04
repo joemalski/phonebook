@@ -5,6 +5,7 @@
 
 import curses
 import modules.skins as skins
+from modules.utility import Utility
 
 def main(stdscr):
 
@@ -18,7 +19,6 @@ def main(stdscr):
 
         # escape to exit
         if key == 27:
-            # code here ...
             break
 
         elif key == curses.KEY_F1:
@@ -36,6 +36,11 @@ def main(stdscr):
 
         key = stdscr.getch()
 
-curses.wrapper(main)
+
+msg = Utility.check_files_exists()
+if msg == True:
+    curses.wrapper(main)
+else:
+    print(msg)
 
 print('Exited Phonebook. Bye!')

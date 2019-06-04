@@ -4,7 +4,7 @@
 # By: Joel F. Malinao
 
 import curses
-from modules.gui import *
+from modules.gui import GuiObject
 
 # main skin
 def main(stdscr):
