@@ -22,17 +22,23 @@ def main(stdscr):
             break
 
         elif key == curses.KEY_F1:
-            stdscr.addstr(23, 50, 'Pressed F1   ')
+            stdscr.addstr(23, 50, 'Pressed F1      ')
 
         elif key == curses.KEY_F2:
-            stdscr.addstr(23, 50, 'Pressed F2   ')
+            stdscr.addstr(23, 50, 'Pressed F2      ')
 
         elif key == curses.KEY_F3:
-            stdscr.addstr(23, 50, 'Pressed F3   ')
+            stdscr.addstr(23, 50, 'Pressed F3      ')
 
         # enter key
         elif key == 10:
-            stdscr.addstr(23, 50, 'Pressed ENTER')
+            stdscr.addstr(23, 50, 'Pressed ENTER   ')
+
+        elif key == curses.KEY_UP:
+            stdscr.addstr(23, 50, 'Pressed PREVIOUS')
+
+        elif key == curses.KEY_DOWN:
+            stdscr.addstr(23, 50, 'Pressed NEXT    ')
 
         key = stdscr.getch()
 

@@ -58,7 +58,7 @@ def main(stdscr):
     stdscr.addstr(11, 0, '-----------------')
 
     # previous button
-    previous_btn = GuiObject(h, w, '[F5]')
+    previous_btn = GuiObject(h, w, '[↑]')
     stdscr.attron(curses.color_pair(1))
     stdscr.addstr(13, 2, previous_btn.text)
     stdscr.attroff(curses.color_pair(1))
@@ -66,7 +66,7 @@ def main(stdscr):
     stdscr.addstr(13, 6, previous_btn_desc.text)
 
     # next button
-    next_btn = GuiObject(h, w, '[F6]')
+    next_btn = GuiObject(h, w, '[↓]')
     stdscr.attron(curses.color_pair(1))
     stdscr.addstr(15, 2, next_btn.text)
     stdscr.attroff(curses.color_pair(1))
