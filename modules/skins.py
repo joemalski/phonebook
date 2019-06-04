@@ -47,12 +47,12 @@ def main(stdscr):
     stdscr.addstr(7, 6, sortby_btn_desc.text)
 
     # exit button
-    exit_btn = GuiObject(h, w, '[F4]')
+    exit_btn = GuiObject(h, w, '[ESC]')
     stdscr.attron(curses.color_pair(1))
     stdscr.addstr(9, 2, exit_btn.text)
     stdscr.attroff(curses.color_pair(1))
     exit_btn_desc = GuiObject(h, w, ' EXIT')
-    stdscr.addstr(9, 6, exit_btn_desc.text)
+    stdscr.addstr(9, 7, exit_btn_desc.text)
 
     # menu line
     stdscr.addstr(11, 0, '-----------------')
