@@ -42,11 +42,16 @@ def main(stdscr):
 
         key = stdscr.getch()
 
+records = Utility.get_records(10)
 
+for record in records:
+    print(record)
+
+'''
 msg = Utility.check_files_exists()
 if msg == True:
     curses.wrapper(main)
 else:
     print(msg)
-
+'''
 print('Exited Phonebook. Bye!')
