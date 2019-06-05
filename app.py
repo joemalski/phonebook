@@ -7,12 +7,22 @@ import curses
 import modules.skins as skins
 from modules.utility import Utility
 
+def add(stdscr):
+    stdscr.clear()
+    skins.main(stdscr)
+    skins.add(stdscr)
+    stdscr.refresh()
+
+
 def main(stdscr):
 
     curses.curs_set(False)
     y, x = stdscr.getmaxyx()
 
     skins.main(stdscr)
+
+    # record labels (static)
+    stdscr.addstr(3, 20,  "ID  Name                                Phone")
 
     # reads first 15 records and displays them
     records = Utility.get_records(15)
@@ -28,7 +38,8 @@ def main(stdscr):
             break
 
         elif key == curses.KEY_F1:
-            stdscr.addstr(23, 50, 'Pressed F1      ')
+            #stdscr.addstr(23, 50, 'Pressed F1      ')
+            add(stdscr)
 
         elif key == curses.KEY_F2:
             stdscr.addstr(23, 50, 'Pressed F2      ')

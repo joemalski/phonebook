@@ -22,9 +22,6 @@ def main(stdscr):
     title_line = GuiObject(h, w, ('-' * 80))
     stdscr.addstr(1, 0, title_line.text)
 
-    # record labels (static)
-    stdscr.addstr(3, 20,  "ID  Name                                Phone")
-
     # add button
     add_btn = GuiObject(h, w, '[F1]')
     stdscr.attron(curses.color_pair(1))
@@ -83,3 +80,24 @@ def main(stdscr):
     # footer label
     footer_lbl = GuiObject(h, w, 'TOTAL RECORDS: ')
     stdscr.addstr(23, 2, footer_lbl.text)
+
+# add skin
+def add(stdscr):
+    # set the color pair, foreground, background
+    curses.init_pair(1, curses.COLOR_BLACK, curses.COLOR_WHITE)
+
+    h, w = stdscr.getmaxyx()
+    curses.curs_set(1)
+
+    stdscr.attron(curses.color_pair(1))
+    stdscr.addstr(3, 20, 'ADD NEW RECORD')
+    stdscr.attroff(curses.color_pair(1))
+
+    stdscr.addstr(5, 20, '   ID: ')
+    stdscr.addstr(6, 20, ' NAME: ')
+    stdscr.addstr(7, 20, 'PHONE: ')
+
+
+
+
+
