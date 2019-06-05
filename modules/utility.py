@@ -59,7 +59,7 @@ class Utility:
         except Exception as e:
             return 'Exception: ' + str(e)
 
-    # show records
+    # show records on main page
     @classmethod
     def show_records(cls, stdscr, records):
         y_offset = 4
