@@ -59,3 +59,34 @@ class Utility:
         except Exception as e:
             return 'Exception: ' + str(e)
 
+    # show records
+    @classmethod
+    def show_records(cls, stdscr, records):
+        y_offset = 4
+        x_offset = 20
+        i = 0
+        for record in records:
+            stdscr.addstr(y_offset, x_offset,  "{}   {}                            {}".
+                format(records[i]['id'], records[i]['name'], records[i]['phone']))
+            y_offset += 1
+            i += 1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

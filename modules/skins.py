@@ -22,6 +22,9 @@ def main(stdscr):
     title_line = GuiObject(h, w, ('-' * 80))
     stdscr.addstr(1, 0, title_line.text)
 
+    # record labels (static)
+    stdscr.addstr(3, 20,  "ID  Name                                Phone")
+
     # add button
     add_btn = GuiObject(h, w, '[F1]')
     stdscr.attron(curses.color_pair(1))
