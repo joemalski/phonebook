@@ -33,6 +33,19 @@ class Utility:
         except Exception as e:
             return 'Exception: ' + str(e)
 
+    # get current id
+    @classmethod
+    def get_id(cls):
+        try:
+            raw_path = path.Path('flatfiles/')
+            id = raw_path / 'id.txt'
+            file_id = open(id, 'r')
+            current_id = file_id.readline()
+            return current_id[11:]
+
+        except Exception as e:
+            return 'Exception: ' + str(e)
+
     # get phone records returns list
     @classmethod
     def get_records(cls, lines=0):

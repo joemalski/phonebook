@@ -12,7 +12,8 @@ def add(stdscr):
     skins.main(stdscr)
     skins.add(stdscr)
     stdscr.refresh()
-
+    current_id = Utility.get_id()
+    stdscr.addstr(5, 26, current_id)
 
 def main(stdscr):
 
