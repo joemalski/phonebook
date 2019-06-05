@@ -1,7 +1,7 @@
 {'id': 1, 'name': 'John Doe', 'phone': '890-1234'}
 {'id': 2, 'name': 'John Doe', 'phone': '890-1234'}
 {'id': 3, 'name': 'John Doe', 'phone': '890-1234'}
-{'id': 4, 'name': 'John Doe Kyle Boys', 'phone': '890-1234'}
+{'id': 4, 'name': 'John Doe', 'phone': '890-1234'}
 {'id': 5, 'name': 'John Doe', 'phone': '890-1234'}
 {'id': 6, 'name': 'John Doe', 'phone': '890-1234'}
 {'id': 7, 'name': 'John Doe', 'phone': '890-1234'}

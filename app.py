@@ -10,6 +10,7 @@ from modules.utility import Utility
 def main(stdscr):
 
     curses.curs_set(False)
+    y, x = stdscr.getmaxyx()
 
     skins.main(stdscr)
 
@@ -53,6 +54,12 @@ def main(stdscr):
 
         elif key == curses.KEY_DOWN:
             stdscr.addstr(23, 50, 'Pressed NEXT    ')
+
+        elif curses.is_term_resized(y, x) == True:
+            stdscr.clear()
+            curses.resizeterm(25, 80)
+            skins.main(stdscr)
+            stdscr.refresh()
 
         key = stdscr.getch()
 
