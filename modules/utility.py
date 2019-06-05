@@ -10,7 +10,7 @@ class Utility:
     def __init__(self):
         pass
 
-    # 'w+' - check files if exists, if not create it
+    # check files if exists, if not create it
     @classmethod
     def check_files_exists(cls):
         try:
@@ -18,12 +18,14 @@ class Utility:
             id = raw_path / 'id.txt'
             phonebook = raw_path / 'phonebook.txt'
         
-            file_id = open(id, 'w+')
-            file_id.write('current_id: 1')
-            file_id.close()
+            if id.exists() != True:
+                file_id = open(id, 'w+')
+                file_id.write('current_id: 1')
+                file_id.close()
 
-            file_phonebook = open(phonebook, 'w+')
-            file_phonebook.close()
+            if phonebook.exists() != True:
+                file_phonebook = open(phonebook, 'w+')
+                file_phonebook.close()
 
             return True
 
