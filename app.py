@@ -40,6 +40,12 @@ def main(stdscr):
         elif key == 10:
             stdscr.addstr(23, 50, 'Pressed ENTER   ')
 
+        elif key == curses.KEY_UP:
+            stdscr.addstr(23, 50, 'Pressed Up Key  ')
+
+        elif key == curses.KEY_DOWN:
+            stdscr.addstr(23, 50, 'Pressed Down Key')
+
         elif key == curses.KEY_F4:
             stdscr.addstr(23, 50, 'Pressed PREVIOUS')
 
