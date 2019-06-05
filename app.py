@@ -40,10 +40,10 @@ def main(stdscr):
         elif key == 10:
             stdscr.addstr(23, 50, 'Pressed ENTER   ')
 
-        elif key == curses.KEY_UP:
+        elif key == curses.KEY_F4:
             stdscr.addstr(23, 50, 'Pressed PREVIOUS')
 
-        elif key == curses.KEY_DOWN:
+        elif key == curses.KEY_F5:
             stdscr.addstr(23, 50, 'Pressed NEXT    ')
 
         elif curses.is_term_resized(y, x) == True:
