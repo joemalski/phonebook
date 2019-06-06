@@ -87,7 +87,6 @@ def add(stdscr):
     curses.init_pair(1, curses.COLOR_BLACK, curses.COLOR_WHITE)
 
     h, w = stdscr.getmaxyx()
-    curses.curs_set(1)
 
     stdscr.attron(curses.color_pair(1))
     stdscr.addstr(3, 20, 'ADD NEW RECORD')
@@ -96,6 +95,10 @@ def add(stdscr):
     stdscr.addstr(5, 20, '   ID: ')
     stdscr.addstr(6, 20, ' NAME: ')
     stdscr.addstr(7, 20, 'PHONE: ')
+
+# clear message line
+def clear_message(stdscr):
+    stdscr.addstr(23, 40, ' '*40)
 
 
 

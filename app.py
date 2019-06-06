@@ -8,12 +8,36 @@ import modules.skins as skins
 from modules.utility import Utility
 
 def add(stdscr):
+
+    # add skins
     stdscr.clear()
     skins.main(stdscr)
     skins.add(stdscr)
     stdscr.refresh()
+
+    # get the current id
     current_id = Utility.get_id()
     stdscr.addstr(5, 26, current_id)
+
+    curses.curs_set(1)
+    curses.echo()
+
+    name = Utility.bytes_to_str(stdscr.getstr(6, 27, 30))
+    phone = Utility.bytes_to_str(stdscr.getstr(7, 27, 7))
+        
+    numbers = set('0123456789')
+    while 1:
+        if set(phone).issubset(numbers) == False or len(phone) < 7:
+            stdscr.addstr(7, 27, '       ')
+            stdscr.addstr(23, 50, 'Check phone number input.')
+            stdscr.refresh()
+            phone = Utility.bytes_to_str(stdscr.getstr(7, 27, 7))
+        else:
+            skins.clear_message(stdscr)
+            break
+
+    curses.curs_set(0)
+    curses.noecho()
 
 def main(stdscr):
 

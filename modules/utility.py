@@ -84,6 +84,14 @@ class Utility:
             y_offset += 1
             i += 1
 
+    # convert bytes to plain string
+    @classmethod
+    def bytes_to_str(cls, bytes):
+        temp = str(bytes)
+        temp = temp[2:] # removes first 2 index
+        temp_len = len(temp)
+        return temp[0:temp_len-1] # returns all characters except the last
+
 
 
 
