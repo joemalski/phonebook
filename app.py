@@ -19,8 +19,7 @@ def add(stdscr):
     current_id = Utility.get_id()
     stdscr.addstr(5, 26, current_id)
 
-    curses.curs_set(1)
-    curses.echo()
+    Utility.cursor_display(1)
 
     # accept and validate name
     name = Utility.bytes_to_str(stdscr.getstr(6, 27, 30))
@@ -40,15 +39,14 @@ def add(stdscr):
     while 1:
         if set(phone).issubset(numbers) == False or len(phone) < 7:
             stdscr.addstr(7, 27, '       ')
-            stdscr.addstr(23, 50, 'Check phone number input.')
+            stdscr.addstr(23, 50, 'Incorrect phone number.')
             stdscr.refresh()
             phone = Utility.bytes_to_str(stdscr.getstr(7, 27, 7))
         else:
             skins.clear_message(stdscr)
             break
 
-    curses.curs_set(0)
-    curses.noecho()
+    Utility.cursor_display(0)
 
 def main(stdscr):
 

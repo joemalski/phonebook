@@ -5,6 +5,7 @@
 
 import pathlib as path
 import ast
+import curses
 
 class Utility:
 
@@ -92,6 +93,19 @@ class Utility:
         temp_len = len(temp)
         return temp[0:temp_len-1] # returns all characters except the last
 
+    # control cursor diplay
+    @classmethod
+    def cursor_display(cls, option):
+        
+        # display cursor and echo
+        if option == 0:
+            curses.curs_set(0)
+            curses.noecho()
+
+        # no cursor, no echo
+        elif option == 1:
+            curses.curs_set(1)
+            curses.echo()
 
 
 
