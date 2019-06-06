@@ -37,14 +37,20 @@ def add(stdscr):
     phone = Utility.bytes_to_str(stdscr.getstr(7, 27, 7))
     numbers = set('0123456789')
     while 1:
-        if set(phone).issubset(numbers) == False or len(phone) < 7:
+        if phone == '':
             stdscr.addstr(7, 27, '       ')
-            stdscr.addstr(23, 50, 'Incorrect phone number.')
+            stdscr.addstr(23, 50, 'Number must not be empty.')
+            stdscr.refresh()
+            phone = Utility.bytes_to_str(stdscr.getstr(7, 27, 7))
+        elif set(phone).issubset(numbers) == False or len(phone) < 7:
+            stdscr.addstr(7, 27, '       ')
+            stdscr.addstr(23, 50, 'Incorrect Number.')
             stdscr.refresh()
             phone = Utility.bytes_to_str(stdscr.getstr(7, 27, 7))
         else:
-            skins.clear_message(stdscr)
             break
+
+        skins.clear_message(stdscr)
 
     Utility.cursor_display(0)
 
