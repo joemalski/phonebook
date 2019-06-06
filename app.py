@@ -22,9 +22,20 @@ def add(stdscr):
     curses.curs_set(1)
     curses.echo()
 
+    # accept and validate name
     name = Utility.bytes_to_str(stdscr.getstr(6, 27, 30))
+    while 1:
+        if name == '':
+            stdscr.addstr(6, 27, ' '*30)
+            stdscr.addstr(23, 50, 'Name must not be empty.')
+            stdscr.refresh()
+            name = Utility.bytes_to_str(stdscr.getstr(6, 27, 30))
+        else:
+            skins.clear_message(stdscr)
+            break
+
+    # accept and validate phone
     phone = Utility.bytes_to_str(stdscr.getstr(7, 27, 7))
-        
     numbers = set('0123456789')
     while 1:
         if set(phone).issubset(numbers) == False or len(phone) < 7:
