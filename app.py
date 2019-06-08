@@ -53,6 +53,7 @@ def add(stdscr):
         skins.clear_message(stdscr)
 
     Utility.cursor_display(0)
+    Utility.save_record(current_id, name, phone)
 
 def main(stdscr):
 

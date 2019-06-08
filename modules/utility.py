@@ -47,6 +47,22 @@ class Utility:
         except Exception as e:
             return 'Exception: ' + str(e)
 
+    # update current id
+    @classmethod
+    def update_current_id(current_id):
+        try:
+            raw_path = path.Path('flatfiles/')
+            id = raw_path / 'id.txt'
+
+            file_id = open(id, 'w')
+            current_id = str(current_id + 1)
+            current_id = 'current_id: ' + current_id
+            file_id.write(current_id)
+            file_id.close()
+
+        except Exception as e:
+            return 'Exception: ' + str(e)
+
     # get phone records returns list
     @classmethod
     def get_records(cls, lines=0):
@@ -84,6 +100,33 @@ class Utility:
                 format(records[i]['id'], records[i]['name'], records[i]['phone']))
             y_offset += 1
             i += 1
+
+    # save record
+    @classmethod
+    def save_record(cls, id, name, phone):
+
+        new_record = {
+            'id': '',
+            'name': '',
+            'phone': ''
+        }
+
+        new_record['id'] = id
+        new_record['name'] = name
+        new_record['phone'] = phone
+
+        try:
+            raw_path = path.Path('flatfiles/')
+            phonebook = raw_path / 'phonebook.txt'
+            file_phonebook = open(phonebook, 'a')
+
+            file_phonebook.write(str(new_record)+'\n')
+            file_phonebook.close()
+
+            Utility.update_current_id(id)
+
+        except Exception as e:
+            return 'Exception: ' + str(e)        
 
     # convert bytes to plain string
     @classmethod
