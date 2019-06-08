@@ -54,6 +54,7 @@ def add(stdscr):
 
     Utility.cursor_display(0)
     Utility.save_record(stdscr, int(current_id), name, phone)
+    Utility.update_current_id(stdscr, int(current_id))
 
 def main(stdscr):
 

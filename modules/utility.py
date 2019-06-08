@@ -125,8 +125,6 @@ class Utility:
             file_phonebook.write(str(new_record)+'\n')            
             file_phonebook.close()
 
-            cls.update_current_id(stdscr, id)
-
         except Exception as e:
             return 'Exception: ' + str(e)        
 
