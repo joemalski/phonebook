@@ -49,18 +49,20 @@ class Utility:
 
     # update current id
     @classmethod
-    def update_current_id(current_id):
+    def update_current_id(cls, stdscr, current_id):
         try:
             raw_path = path.Path('flatfiles/')
             id = raw_path / 'id.txt'
 
-            file_id = open(id, 'w')
             current_id = str(current_id + 1)
             current_id = 'current_id: ' + current_id
+            stdscr.addstr(23, 50, current_id)
+            file_id = open(id, 'w')
             file_id.write(current_id)
             file_id.close()
 
         except Exception as e:
+            stdscr.addstr(23, 50, str(e))
             return 'Exception: ' + str(e)
 
     # get phone records returns list
@@ -103,7 +105,7 @@ class Utility:
 
     # save record
     @classmethod
-    def save_record(cls, id, name, phone):
+    def save_record(cls, stdscr, id, name, phone):
 
         new_record = {
             'id': '',
@@ -120,10 +122,10 @@ class Utility:
             phonebook = raw_path / 'phonebook.txt'
             file_phonebook = open(phonebook, 'a')
 
-            file_phonebook.write(str(new_record)+'\n')
+            file_phonebook.write(str(new_record)+'\n')            
             file_phonebook.close()
 
-            Utility.update_current_id(id)
+            cls.update_current_id(stdscr, id)
 
         except Exception as e:
             return 'Exception: ' + str(e)        

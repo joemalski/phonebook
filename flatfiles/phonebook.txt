@@ -1,2 +1,4 @@
-{'id': ' 1', 'name': 'Joel', 'phone': '1234567'}
-{'id': ' 2', 'name': 'John Wick 3', 'phone': '7654321'}
+{'id': ' 1', 'name': 'Joel Malski', 'phone': '1234444'}
+{'id': ' 2', 'name': 'John', 'phone': '1234567'}
+{'id': ' 3', 'name': 'vlad', 'phone': '1231234'}
+{'id': 4, 'name': 'Sergie and Anatoli', 'phone': '1234546'}

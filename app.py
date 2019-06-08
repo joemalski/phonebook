@@ -53,7 +53,7 @@ def add(stdscr):
         skins.clear_message(stdscr)
 
     Utility.cursor_display(0)
-    Utility.save_record(current_id, name, phone)
+    Utility.save_record(stdscr, int(current_id), name, phone)
 
 def main(stdscr):
 
@@ -67,7 +67,10 @@ def main(stdscr):
 
     # reads first 15 records and displays them
     records = Utility.get_records(15)
-    Utility.show_records(stdscr, records)
+    if records:
+        Utility.show_records(stdscr, records)
+    else:
+        stdscr.addstr(23, 50, '0 records found')
 
     key = stdscr.getch()
 
