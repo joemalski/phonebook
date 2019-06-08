@@ -113,7 +113,7 @@ class Utility:
             'phone': ''
         }
 
-        new_record['id'] = id
+        new_record['id'] = str(id)
         new_record['name'] = name
         new_record['phone'] = phone
 
