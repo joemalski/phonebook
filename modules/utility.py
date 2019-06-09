@@ -12,6 +12,23 @@ class Utility:
     def __init__(self):
         pass
 
+    # get total records
+    @classmethod
+    def get_total_records(cls):
+        try:
+            raw_path = path.Path('flatfiles/')
+            phonebook = raw_path / 'phonebook.txt'
+            file_phonebook = open(phonebook, 'r')
+
+            total_lines = 0
+            for phone in file_phonebook.readlines():
+                total_lines +=1
+
+            return total_lines
+
+        except Exception as e:
+            return 'Exception: ' + str(e)
+
     # check files if exists, if not create it
     @classmethod
     def check_files_exists(cls):
@@ -56,7 +73,6 @@ class Utility:
 
             current_id = str(current_id + 1)
             current_id = 'current_id: ' + current_id
-            stdscr.addstr(23, 50, current_id)
             file_id = open(id, 'w')
             file_id.write(current_id)
             file_id.close()

@@ -13,6 +13,10 @@ def add(stdscr):
     stdscr.clear()
     skins.main(stdscr)
     skins.add(stdscr)
+
+    lines = Utility.get_total_records()
+    stdscr.addstr(23, 17, str(lines))
+    
     stdscr.refresh()
 
     # get the current id
@@ -56,6 +60,9 @@ def add(stdscr):
     Utility.save_record(stdscr, int(current_id), name, phone)
     Utility.update_current_id(stdscr, int(current_id))
 
+    stdscr.clear()
+    main(stdscr)
+
 def main(stdscr):
 
     curses.curs_set(False)
@@ -67,6 +74,8 @@ def main(stdscr):
     records = Utility.get_records(4)
     if records:
         Utility.show_records(stdscr, records)
+        lines = Utility.get_total_records()
+        stdscr.addstr(23, 17, str(lines))
     else:
         stdscr.addstr(23, 50, '0 records found')
 
