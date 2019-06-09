@@ -63,11 +63,8 @@ def main(stdscr):
 
     skins.main(stdscr)
 
-    # record labels (static)
-    stdscr.addstr(3, 20,  "ID  Name                                Phone")
-
-    # reads first 15 records and displays them
-    records = Utility.get_records(15)
+    # reads first 4 records and displays them
+    records = Utility.get_records(4)
     if records:
         Utility.show_records(stdscr, records)
     else:
@@ -83,7 +80,6 @@ def main(stdscr):
             break
 
         elif key == curses.KEY_F1:
-            #stdscr.addstr(23, 50, 'Pressed F1      ')
             add(stdscr)
 
         elif key == curses.KEY_F2:

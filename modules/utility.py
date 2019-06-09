@@ -94,13 +94,14 @@ class Utility:
     # show records on main page
     @classmethod
     def show_records(cls, stdscr, records):
-        y_offset = 4
+        y_offset = 3
         x_offset = 20
         i = 0
         for record in records:
-            stdscr.addstr(y_offset, x_offset,  "{}   {}                            {}".
-                format(records[i]['id'], records[i]['name'], records[i]['phone']))
-            y_offset += 1
+            stdscr.addstr(y_offset, x_offset, "ID: {}".format(records[i]['id']))
+            stdscr.addstr(y_offset+1, x_offset, "Name: {}".format(records[i]['name']))
+            stdscr.addstr(y_offset+2, x_offset, "Phone: {}".format(records[i]['phone']))
+            y_offset += 4
             i += 1
 
     # save record
