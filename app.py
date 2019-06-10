@@ -61,13 +61,10 @@ def add(stdscr):
     Utility.update_current_id(stdscr, int(current_id))
 
     stdscr.clear()
-    main(stdscr)
+    load_main_details(stdscr)
 
-def main(stdscr):
 
-    curses.curs_set(False)
-    y, x = stdscr.getmaxyx()
-
+def load_main_details(stdscr):
     skins.main(stdscr)
 
     # reads first 4 records and displays them
@@ -78,6 +75,13 @@ def main(stdscr):
         stdscr.addstr(23, 17, str(lines))
     else:
         stdscr.addstr(23, 50, '0 records found')
+
+def main(stdscr):
+
+    curses.curs_set(False)
+    y, x = stdscr.getmaxyx()
+
+    load_main_details(stdscr)
 
     key = stdscr.getch()
 
