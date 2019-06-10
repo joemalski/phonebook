@@ -57,8 +57,22 @@ def add(stdscr):
         skins.clear_message(stdscr)
 
     Utility.cursor_display(0)
-    Utility.save_record(stdscr, int(current_id), name, phone)
-    Utility.update_current_id(stdscr, int(current_id))
+    stdscr.addstr(10, 27, '[ y ] - Save [ n ] Cancel')
+    key = None
+    
+    # check if user wants to save it or not
+    # 'y'=121 and 'n'=110
+    while (key != 121 and key != 110):
+
+        key = stdscr.getch()
+        
+        if key == 121:
+            Utility.save_record(stdscr, int(current_id), name, phone)
+            Utility.update_current_id(stdscr, int(current_id))
+            break
+
+        elif key == 110:
+            break
 
     stdscr.clear()
     load_main_details(stdscr)
