@@ -200,22 +200,3 @@ class Utility:
         elif option == 1:
             curses.curs_set(1)
             curses.echo()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

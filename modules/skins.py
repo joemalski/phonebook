@@ -102,8 +102,3 @@ def add():
 def clear_message():
     
     Utility.stdscr.addstr(23, 40, ' '*40)
-
-
-
-
-

@@ -115,12 +115,8 @@ def main(stdscr):
     # main event loop
     while 1:
 
-        # escape to exit
-        if key == 27:
-            break
-
         # add new records
-        elif key == curses.KEY_F1:
+        if key == curses.KEY_F1:
             add()
 
         # search records
@@ -141,15 +137,9 @@ def main(stdscr):
 
             Utility.stdscr.addstr(23, 50, "sort_type: {}".format(Utility.sort_type))
 
-        # enter key
-        elif key == 10:
-            Utility.stdscr.addstr(23, 50, 'Pressed ENTER   ')
-
-        elif key == curses.KEY_UP:
-            Utility.stdscr.addstr(23, 50, 'Pressed Up Key  ')
-
-        elif key == curses.KEY_DOWN:
-            Utility.stdscr.addstr(23, 50, 'Pressed Down Key')
+        # escape to exit
+        elif key == 27:
+            break
 
         elif key == curses.KEY_F4:
             Utility.stdscr.addstr(23, 50, 'Pressed PREVIOUS')
@@ -157,6 +147,19 @@ def main(stdscr):
         elif key == curses.KEY_F5:
             Utility.stdscr.addstr(23, 50, 'Pressed NEXT    ')
 
+        # enter key for selecting a record
+        elif key == 10:
+            Utility.stdscr.addstr(23, 50, 'Pressed ENTER   ')
+
+        # navigating records using arrow up
+        elif key == curses.KEY_UP:
+            Utility.stdscr.addstr(23, 50, 'Pressed Up Key  ')
+
+        # navigating records using arrow up
+        elif key == curses.KEY_DOWN:
+            Utility.stdscr.addstr(23, 50, 'Pressed Down Key')
+
+        # checks for window resize event
         elif curses.is_term_resized(y, x) == True:
             Utility.stdscr.clear()
             curses.resizeterm(25, 80)
