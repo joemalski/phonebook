@@ -9,6 +9,11 @@ import curses
 
 class Utility:
 
+    # class variables
+
+    # 0 - asending, 1 - descending
+    sort_type = 0 
+
     def __init__(self):
         pass
 

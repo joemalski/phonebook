@@ -108,14 +108,24 @@ def main(stdscr):
         if key == 27:
             break
 
+        # add new records
         elif key == curses.KEY_F1:
             add(stdscr)
 
+        # search records
         elif key == curses.KEY_F2:
             stdscr.addstr(23, 50, 'Pressed F2      ')
 
+        # sort order
         elif key == curses.KEY_F3:
-            stdscr.addstr(23, 50, 'Pressed F3      ')
+
+            # toggle sort type value
+            if Utility.sort_type == 0:
+                Utility.sort_type = 1
+            elif Utility.sort_type == 1:
+                Utility.sort_type = 0
+
+            stdscr.addstr(23, 50, "sort_type: {}".format(Utility.sort_type))
 
         # enter key
         elif key == 10:
