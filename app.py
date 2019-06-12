@@ -134,9 +134,7 @@ def main(stdscr):
         elif curses.is_term_resized(y, x) == True:
             stdscr.clear()
             curses.resizeterm(25, 80)
-            skins.main(stdscr)
-            Utility.show_records(stdscr, records)
-            stdscr.refresh()
+            load_main_details(stdscr)
 
         key = stdscr.getch()
 
