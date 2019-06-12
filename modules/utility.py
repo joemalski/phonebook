@@ -14,6 +14,7 @@ class Utility:
 
     # 0 - asending, 1 - descending
     sort_type = 0
+    stdscr = None
 
     def __init__(self):
         pass
@@ -72,7 +73,7 @@ class Utility:
 
     # update current id
     @classmethod
-    def update_current_id(cls, stdscr, current_id):
+    def update_current_id(cls, current_id):
         try:
             raw_path = path.Path('flatfiles/')
             id = raw_path / 'id.txt'
@@ -84,7 +85,7 @@ class Utility:
             file_id.close()
 
         except Exception as e:
-            stdscr.addstr(23, 50, str(e))
+            cls.stdscr.addstr(23, 50, str(e))
             return 'Exception: ' + str(e)
 
     # get phone records returns list
@@ -142,20 +143,20 @@ class Utility:
 
     # show records on main page
     @classmethod
-    def show_records(cls, stdscr, records):
+    def show_records(cls, records):
         y_offset = 3
         x_offset = 20
         i = 0
         for record in records:
-            stdscr.addstr(y_offset, x_offset, "ID: {}".format(records[i]['id']))
-            stdscr.addstr(y_offset+1, x_offset, "Name: {}".format(records[i]['name']))
-            stdscr.addstr(y_offset+2, x_offset, "Phone: {}".format(records[i]['phone']))
+            cls.stdscr.addstr(y_offset, x_offset, "ID: {}".format(records[i]['id']))
+            cls.stdscr.addstr(y_offset+1, x_offset, "Name: {}".format(records[i]['name']))
+            cls.stdscr.addstr(y_offset+2, x_offset, "Phone: {}".format(records[i]['phone']))
             y_offset += 4
             i += 1
 
     # save record
     @classmethod
-    def save_record(cls, stdscr, id, name, phone):
+    def save_record(cls, id, name, phone):
 
         new_record = {
             'id': '',

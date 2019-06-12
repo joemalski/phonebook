@@ -4,10 +4,13 @@
 # By: Joel F. Malinao
 
 import curses
+from modules.utility import Utility
 from modules.gui import GuiObject
 
 # main skin
-def main(stdscr):
+def main():
+
+    stdscr = Utility.stdscr
 
     # set the color pair, foreground, background
     curses.init_pair(1, curses.COLOR_BLACK, curses.COLOR_WHITE)
@@ -82,7 +85,10 @@ def main(stdscr):
     stdscr.addstr(23, 2, footer_lbl.text)
 
 # add skin
-def add(stdscr):
+def add():
+
+    stdscr = Utility.stdscr
+
     # set the color pair, foreground, background
     curses.init_pair(1, curses.COLOR_BLACK, curses.COLOR_WHITE)
 
@@ -97,7 +103,8 @@ def add(stdscr):
     stdscr.addstr(7, 20, 'PHONE: ')
 
 # clear message line
-def clear_message(stdscr):
+def clear_message():
+    stdscr = Utility.stdscr
     stdscr.addstr(23, 40, ' '*40)
 
 
