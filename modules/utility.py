@@ -6,13 +6,14 @@
 import pathlib as path
 import ast
 import curses
+from file_read_backwards import FileReadBackwards
 
 class Utility:
 
     # class variables
 
     # 0 - asending, 1 - descending
-    sort_type = 0 
+    sort_type = 0
 
     def __init__(self):
         pass
@@ -111,6 +112,33 @@ class Utility:
 
         except Exception as e:
             return 'Exception: ' + str(e)
+
+    # get phone records in reverse order using the FileReadBackwards library
+    @classmethod
+    def get_records_reverse(cls, lines=0):
+        try:
+            raw_path = path.Path('flatfiles/')
+            phonebook = raw_path / 'phonebook.txt'
+            with FileReadBackwards(phonebook, encoding="utf-8") as file_phonebook:
+
+                records = []
+                count = 0
+                if lines == 0:
+                    for phone in file_phonebook:
+                        records.append(ast.literal_eval(phone)) # convert str to dict
+                else:
+                    for phone in file_phonebook:
+                        if (lines-1) >= count:
+                            records.append(ast.literal_eval(phone)) # convert str to dict
+                            count += 1
+                        else:
+                            break
+
+                return records
+
+        except Exception as e:
+            return 'Exception: ' + str(e)
+
 
     # show records on main page
     @classmethod

@@ -79,10 +79,17 @@ def add(stdscr):
 
 
 def load_main_details(stdscr):
+    stdscr.clear()
     skins.main(stdscr)
 
-    # reads first 4 records and displays them
-    records = Utility.get_records(4)
+    # reads first 4 records and displays them and
+    # check the sort_type
+    if Utility.sort_type == 0:
+        records = Utility.get_records(4)
+    elif Utility.sort_type == 1:
+        records = Utility.get_records_reverse(4)
+
+    # show records    
     if records:
         Utility.show_records(stdscr, records)
 
@@ -124,6 +131,9 @@ def main(stdscr):
                 Utility.sort_type = 1
             elif Utility.sort_type == 1:
                 Utility.sort_type = 0
+
+            # reload records
+            load_main_details(stdscr)
 
             stdscr.addstr(23, 50, "sort_type: {}".format(Utility.sort_type))
 
