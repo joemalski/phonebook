@@ -85,6 +85,8 @@ def load_main_details(stdscr):
     records = Utility.get_records(4)
     if records:
         Utility.show_records(stdscr, records)
+
+        # print total records at the bottom
         lines = Utility.get_total_records()
         stdscr.addstr(23, 17, str(lines))
     else:
