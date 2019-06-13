@@ -15,6 +15,8 @@ class Utility:
     # 0 - asending, 1 - descending
     sort_type = 0
     stdscr = None
+    current_page = 1
+    records_per_page = 4
 
     def __init__(self):
         pass

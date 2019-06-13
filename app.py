@@ -4,8 +4,45 @@
 # By: Joel F. Malinao
 
 import curses
+import math as m
 import modules.skins as skins
 from modules.utility import Utility
+
+def next_record():
+
+    total_row_count = Utility.get_total_records()
+    last_page = m.ceil(total_row_count/Utility.records_per_page)
+
+    # check last page value
+    if last_page < 1:
+        last_page = 1
+
+    # check page number
+    page_num = Utility.current_page
+    if page_num < 1:
+        page_num = 1
+    elif page_num > last_page:
+        page_num = last_page
+
+    # get records equivalent in page number, start and end record index
+    end_index = page_num * Utility.records_per_page
+    start_index = end_index - (Utility.records_per_page - 1)
+
+def previous_record():
+
+    total_row_count = Utility.get_total_records()
+    last_page = m.ceil(total_row_count/Utility.records_per_page)
+
+    # check last page value
+    if last_page < 1:
+        last_page = 1
+
+    # check page number
+    page_num = 1
+    if page_num < 1:
+        page_num = 1
+    elif page_num > last_page:
+        page_num = last_page
 
 def add():
 
@@ -75,10 +112,10 @@ def add():
             break
 
     Utility.stdscr.clear()
-    load_main_details()
+    load_main_details(Utility.records_per_page)
 
 
-def load_main_details():
+def load_main_details(records_per_page):
 
     Utility.stdscr.clear()
     skins.main()
@@ -86,9 +123,9 @@ def load_main_details():
     # reads first 4 records and displays them and
     # check the sort_type
     if Utility.sort_type == 0:
-        records = Utility.get_records(4)
+        records = Utility.get_records(records_per_page)
     elif Utility.sort_type == 1:
-        records = Utility.get_records_reverse(4)
+        records = Utility.get_records_reverse(records_per_page)
 
     # show records    
     if records:
@@ -108,7 +145,7 @@ def main(stdscr):
     curses.curs_set(False)
     y, x = Utility.stdscr.getmaxyx()
 
-    load_main_details()
+    load_main_details(Utility.records_per_page)
 
     key = Utility.stdscr.getch()
 
@@ -133,7 +170,7 @@ def main(stdscr):
                 Utility.sort_type = 0
 
             # reload records
-            load_main_details()
+            load_main_details(Utility.records_per_page)
 
             Utility.stdscr.addstr(23, 50, "sort_type: {}".format(Utility.sort_type))
 
@@ -141,11 +178,15 @@ def main(stdscr):
         elif key == 27:
             break
 
+        # show previous records
         elif key == curses.KEY_F4:
-            Utility.stdscr.addstr(23, 50, 'Pressed PREVIOUS')
+            previous_record()
+            Utility.stdscr.addstr(23, 50, 'Pressed Previous    ')
 
+        # show next records
         elif key == curses.KEY_F5:
-            Utility.stdscr.addstr(23, 50, 'Pressed NEXT    ')
+            next_record()
+            #Utility.stdscr.addstr(23, 50, 'Pressed NEXT    ')
 
         # enter key for selecting a record
         elif key == 10:
@@ -163,7 +204,7 @@ def main(stdscr):
         elif curses.is_term_resized(y, x) == True:
             Utility.stdscr.clear()
             curses.resizeterm(25, 80)
-            load_main_details()
+            load_main_details(Utility.records_per_page)
 
         key = Utility.stdscr.getch()
 
