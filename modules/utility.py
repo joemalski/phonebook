@@ -10,12 +10,10 @@ from file_read_backwards import FileReadBackwards
 
 class Utility:
 
-    # class variables
-
-    # 0 - asending, 1 - descending
-    sort_type = 0
-    stdscr = None
-    current_page = 2
+    # class variables    
+    sort_type = 0 # 0 - asending, 1 - descending
+    stdscr = None # holds the stdscr from the curses library
+    current_page = 1
     records_per_page = 4
 
     def __init__(self):
@@ -167,6 +165,7 @@ class Utility:
             cls.stdscr.addstr(y_offset, x_offset, "ID: {}".format(records[i]['id']))
             cls.stdscr.addstr(y_offset+1, x_offset, "Name: {}".format(records[i]['name']))
             cls.stdscr.addstr(y_offset+2, x_offset, "Phone: {}".format(records[i]['phone']))
+            #cls.stdscr.getch()
             y_offset += 4
             i += 1
 

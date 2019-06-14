@@ -13,22 +13,33 @@ def next_record():
     total_row_count = Utility.get_total_records()
     last_page = m.ceil(total_row_count/Utility.records_per_page)
 
-    # check last page value
+    # check last page value integrity
+    # make sure it is not less than 1
     if last_page < 1:
         last_page = 1
 
-    # check page number
+    # check page number integrity
+    # make sure page number is not > last page
+    # and less than 1
     page_num = Utility.current_page
     if page_num < 1:
         page_num = 1
     elif page_num > last_page:
         page_num = last_page
 
+    # show only the last page
+    # page_num - 1 since the offset will move 1 page ahead of current page
+    if page_num == last_page:
+        page_num -= 1 # move to previous page
+
     # get records equivalent in page number, start and end record index
     end_index = page_num * Utility.records_per_page
-    start_index = end_index - (Utility.records_per_page - 1)
+    start_index = end_index - (Utility.records_per_page - 1) # for future use :)
 
-    #load_main_details(end_index)
+    load_main_details(Utility.records_per_page, end_index + 1)
+
+    # update current page
+    Utility.current_page = page_num + 1
 
 def previous_record():
 
@@ -114,7 +125,8 @@ def add():
             break
 
     Utility.stdscr.clear()
-    load_main_details(Utility.records_per_page)
+    load_main_details(Utility.records_per_page, 0)
+    Utility.current_page = 1 # refresh current page
 
 
 def load_main_details(records_per_page, offset):
