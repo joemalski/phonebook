@@ -28,6 +28,8 @@ def next_record():
     end_index = page_num * Utility.records_per_page
     start_index = end_index - (Utility.records_per_page - 1)
 
+    #load_main_details(end_index)
+
 def previous_record():
 
     total_row_count = Utility.get_total_records()
@@ -115,15 +117,14 @@ def add():
     load_main_details(Utility.records_per_page)
 
 
-def load_main_details(records_per_page):
+def load_main_details(records_per_page, offset):
 
     Utility.stdscr.clear()
     skins.main()
 
-    # reads first 4 records and displays them and
     # check the sort_type
     if Utility.sort_type == 0:
-        records = Utility.get_records(records_per_page)
+        records = Utility.get_records(records_per_page, offset)
     elif Utility.sort_type == 1:
         records = Utility.get_records_reverse(records_per_page)
 
@@ -134,7 +135,7 @@ def load_main_details(records_per_page):
         # print total records at the bottom
         lines = Utility.get_total_records()
         Utility.stdscr.addstr(23, 17, str(lines))
-    else:
+    else:        
         Utility.stdscr.addstr(23, 50, '0 records found')
 
 def main(stdscr):
@@ -145,7 +146,7 @@ def main(stdscr):
     curses.curs_set(False)
     y, x = Utility.stdscr.getmaxyx()
 
-    load_main_details(Utility.records_per_page)
+    load_main_details(Utility.records_per_page, 0)
 
     key = Utility.stdscr.getch()
 
@@ -170,7 +171,7 @@ def main(stdscr):
                 Utility.sort_type = 0
 
             # reload records
-            load_main_details(Utility.records_per_page)
+            load_main_details(Utility.records_per_page, 0)
 
             Utility.stdscr.addstr(23, 50, "sort_type: {}".format(Utility.sort_type))
 
@@ -204,7 +205,7 @@ def main(stdscr):
         elif curses.is_term_resized(y, x) == True:
             Utility.stdscr.clear()
             curses.resizeterm(25, 80)
-            load_main_details(Utility.records_per_page)
+            load_main_details(Utility.records_per_page, 0)
 
         key = Utility.stdscr.getch()
 

@@ -15,7 +15,7 @@ class Utility:
     # 0 - asending, 1 - descending
     sort_type = 0
     stdscr = None
-    current_page = 1
+    current_page = 2
     records_per_page = 4
 
     def __init__(self):
@@ -91,8 +91,9 @@ class Utility:
             return 'Exception: ' + str(e)
 
     # get phone records returns list
+    # Note: offset should not be > total records
     @classmethod
-    def get_records(cls, lines=0):
+    def get_records(cls, lines = 0, offset = 0):
         try:
             raw_path = path.Path('flatfiles/')
             phonebook = raw_path / 'phonebook.txt'
@@ -100,16 +101,29 @@ class Utility:
 
             records = []
             count = 0
+            index = 0
+
             if lines == 0:
                 for phone in file_phonebook.readlines():
                     records.append(ast.literal_eval(phone)) # convert str to dict
             else:
-                for phone in file_phonebook.readlines():
-                    if (lines-1) >= count:
-                        records.append(ast.literal_eval(phone)) # convert str to dict
-                        count += 1
-                    else:
-                        break
+                if offset == 0:
+                    for phone in file_phonebook.readlines():
+                        if (lines-1) >= count:
+                            records.append(ast.literal_eval(phone)) # convert str to dict
+                            count += 1
+                        else:
+                            break
+                else:
+                    for phone in file_phonebook.readlines():
+                        if ((offset - 1) == index):
+                            if (lines-1) >= count:
+                                records.append(ast.literal_eval(phone)) # convert str to dict
+                                count +=1
+                            else:
+                                break
+                            offset += 1
+                        index += 1
 
             return records
 
@@ -118,7 +132,7 @@ class Utility:
 
     # get phone records in reverse order using the FileReadBackwards library
     @classmethod
-    def get_records_reverse(cls, lines=0):
+    def get_records_reverse(cls, lines = 0):
         try:
             raw_path = path.Path('flatfiles/')
             phonebook = raw_path / 'phonebook.txt'
