@@ -129,13 +129,14 @@ class Utility:
             return 'Exception: ' + str(e)
 
     # get phone records in reverse order using the FileReadBackwards library
+    # Note: offset should not be > total records
     @classmethod
     def get_records_reverse(cls, lines = 0, offset = 0):
         try:
             raw_path = path.Path('flatfiles/')
             phonebook = raw_path / 'phonebook.txt'
             with FileReadBackwards(phonebook, encoding="utf-8") as file_phonebook:
-                
+
                 records = []
                 count = 0
                 index = 0
