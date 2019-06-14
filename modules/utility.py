@@ -14,7 +14,7 @@ class Utility:
     sort_type = 0 # 0 - asending, 1 - descending
     stdscr = None # holds the stdscr from the curses library
     current_page = 1
-    records_per_page = 4
+    records_per_page = 4 # ideal value for 80 x 25 terminal size 
 
     def __init__(self):
         pass
@@ -130,24 +130,37 @@ class Utility:
 
     # get phone records in reverse order using the FileReadBackwards library
     @classmethod
-    def get_records_reverse(cls, lines = 0):
+    def get_records_reverse(cls, lines = 0, offset = 0):
         try:
             raw_path = path.Path('flatfiles/')
             phonebook = raw_path / 'phonebook.txt'
             with FileReadBackwards(phonebook, encoding="utf-8") as file_phonebook:
-
+                
                 records = []
                 count = 0
+                index = 0
+
                 if lines == 0:
                     for phone in file_phonebook:
                         records.append(ast.literal_eval(phone)) # convert str to dict
                 else:
-                    for phone in file_phonebook:
-                        if (lines-1) >= count:
-                            records.append(ast.literal_eval(phone)) # convert str to dict
-                            count += 1
-                        else:
-                            break
+                    if offset == 0:
+                        for phone in file_phonebook:
+                            if (lines-1) >= count:
+                                records.append(ast.literal_eval(phone)) # convert str to dict
+                                count += 1
+                            else:
+                                break
+                    else:
+                        for phone in file_phonebook:
+                            if ((offset - 1) == index):
+                                if (lines-1) >= count:
+                                    records.append(ast.literal_eval(phone)) # convert str to dict
+                                    count +=1
+                                else:
+                                    break
+                                offset += 1
+                            index += 1
 
                 return records
 

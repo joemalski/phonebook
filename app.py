@@ -10,52 +10,48 @@ from modules.utility import Utility
 
 def next_record():
 
+    # get last page
     total_row_count = Utility.get_total_records()
     last_page = m.ceil(total_row_count/Utility.records_per_page)
 
-    # check last page value integrity
-    # make sure it is not less than 1
-    if last_page < 1:
-        last_page = 1
-
-    # check page number integrity
-    # make sure page number is not > last page
-    # and less than 1
+    # get current page
     page_num = Utility.current_page
-    if page_num < 1:
-        page_num = 1
-    elif page_num > last_page:
-        page_num = last_page
 
-    # show only the last page
-    # page_num - 1 since the offset will move 1 page ahead of current page
+    # go to next page and check if > last page
+    page_num += 1
     if page_num == last_page:
-        page_num -= 1 # move to previous page
+        page_num = last_page - 1
+
+    # update page number
+    Utility.current_page = page_num
 
     # get records equivalent in page number, start and end record index
     end_index = page_num * Utility.records_per_page
-    start_index = end_index - (Utility.records_per_page - 1) # for future use :)
+    start_index = end_index - (Utility.records_per_page - 1)
+    next_page_index = end_index + 1
 
-    load_main_details(Utility.records_per_page, end_index + 1)
-
-    # update current page
-    Utility.current_page = page_num + 1
+    # show next page
+    load_main_details(Utility.records_per_page, next_page_index)
 
 def previous_record():
 
-    total_row_count = Utility.get_total_records()
-    last_page = m.ceil(total_row_count/Utility.records_per_page)
+    # get current page
+    page_num = Utility.current_page
 
-    # check last page value
-    if last_page < 1:
-        last_page = 1
-
-    # check page number
-    page_num = 1
-    if page_num < 1:
+    # go to previous page and check if < 1
+    page_num -= 1
+    if page_num == 0:
         page_num = 1
-    elif page_num > last_page:
-        page_num = last_page
+
+    # update current page
+    Utility.current_page = page_num
+    
+    # get records equivalent in page number, start and end record index
+    end_index = page_num * Utility.records_per_page
+    start_index = end_index - (Utility.records_per_page - 1)  
+
+    # show next page
+    load_main_details(Utility.records_per_page, start_index)
 
 def add():
 
@@ -138,15 +134,15 @@ def load_main_details(records_per_page, offset):
     if Utility.sort_type == 0:
         records = Utility.get_records(records_per_page, offset)
     elif Utility.sort_type == 1:
-        records = Utility.get_records_reverse(records_per_page)
+        records = Utility.get_records_reverse(records_per_page, offset)
 
     # show records    
     if records:
         Utility.show_records(records)
 
         # print total records at the bottom
-        lines = Utility.get_total_records()
-        Utility.stdscr.addstr(23, 17, str(lines))
+        total = Utility.get_total_records()
+        Utility.stdscr.addstr(23, 17, "{} page: {}".format(total, Utility.current_page))
     else:        
         Utility.stdscr.addstr(23, 50, '0 records found')
 
@@ -178,9 +174,13 @@ def main(stdscr):
 
             # toggle sort type value
             if Utility.sort_type == 0:
+                total_row_count = Utility.get_total_records()
+                Utility.current_page = m.ceil(total_row_count/Utility.records_per_page)
                 Utility.sort_type = 1
+
             elif Utility.sort_type == 1:
                 Utility.sort_type = 0
+                Utility.current_page = 1
 
             # reload records
             load_main_details(Utility.records_per_page, 0)
@@ -194,7 +194,7 @@ def main(stdscr):
         # show previous records
         elif key == curses.KEY_F4:
             previous_record()
-            Utility.stdscr.addstr(23, 50, 'Pressed Previous    ')
+            #Utility.stdscr.addstr(23, 50, 'Pressed Previous    ')
 
         # show next records
         elif key == curses.KEY_F5:
