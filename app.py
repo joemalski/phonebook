@@ -175,11 +175,11 @@ def main(stdscr):
             # toggle sort type value
             if Utility.sort_type == 0:
                 Utility.sort_type = 1
-                Utility.current_page = 1
 
             elif Utility.sort_type == 1:
                 Utility.sort_type = 0
-                Utility.current_page = 1
+                
+            Utility.current_page = 1
 
             # reload records
             load_main_details(Utility.records_per_page, 0)
@@ -198,12 +198,10 @@ def main(stdscr):
         # show previous records
         elif key == curses.KEY_F4:
             previous_record()
-            #Utility.stdscr.addstr(23, 50, 'Pressed Previous    ')
 
         # show next records
         elif key == curses.KEY_F5:
             next_record()
-            #Utility.stdscr.addstr(23, 50, 'Pressed NEXT    ')
 
         # enter key for selecting a record
         elif key == 10:

@@ -19,3 +19,6 @@
 {'id': '19', 'name': 'Randy Silva Jr.', 'phone': '2345678'}
 {'id': '20', 'name': 'I will be free', 'phone': '2342342'}
 {'id': '21', 'name': 'New Me!', 'phone': '1231234'}
+{'id': '22', 'name': 'John Bully', 'phone': '2342345'}
+{'id': '23', 'name': 'Michael Jordan', 'phone': '1231232'}
+{'id': '24', 'name': 'Papa Joe', 'phone': '1231234'}
