@@ -174,9 +174,8 @@ def main(stdscr):
 
             # toggle sort type value
             if Utility.sort_type == 0:
-                total_row_count = Utility.get_total_records()
-                Utility.current_page = m.ceil(total_row_count/Utility.records_per_page)
                 Utility.sort_type = 1
+                Utility.current_page = 1
 
             elif Utility.sort_type == 1:
                 Utility.sort_type = 0
@@ -185,7 +184,12 @@ def main(stdscr):
             # reload records
             load_main_details(Utility.records_per_page, 0)
 
-            Utility.stdscr.addstr(23, 50, "sort_type: {}".format(Utility.sort_type))
+            if Utility.sort_type == 0:
+                sort_by = 'Ascending'
+            elif Utility.sort_type == 1:
+                sort_by = 'Descending'
+
+            Utility.stdscr.addstr(23, 50, "Sort By: {}".format(sort_by))
 
         # escape to exit
         elif key == 27:
