@@ -8,6 +8,13 @@ import math as m
 import modules.skins as skins
 from modules.utility import Utility
 
+def search():
+    
+    # add skins
+    Utility.stdscr.clear()
+    skins.main()
+    skins.search()
+
 def next_record():
 
     # get last page
@@ -179,7 +186,8 @@ def main(stdscr):
 
         # search records
         elif key == curses.KEY_F2:
-            Utility.stdscr.addstr(23, 50, 'Pressed F2      ')
+            search()
+            #Utility.stdscr.addstr(23, 50, 'Pressed F2      ')
 
         # sort order
         elif key == curses.KEY_F3:

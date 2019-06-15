@@ -101,6 +101,24 @@ def add():
     Utility.stdscr.addstr(6, 20, ' NAME: ')
     Utility.stdscr.addstr(7, 20, 'PHONE: ')
 
+# search skin
+def search():
+
+    # set the color pair, foreground, background
+    curses.init_pair(1, curses.COLOR_BLACK, curses.COLOR_WHITE)
+
+    # get screen height and width
+    h, w = Utility.stdscr.getmaxyx()
+
+    # search header label
+    Utility.stdscr.attron(curses.color_pair(1))
+    Utility.stdscr.addstr(3, 20, 'SEARCH RECORDS')
+    Utility.stdscr.attroff(curses.color_pair(1))
+
+    # search input labels
+    Utility.stdscr.addstr(5, 20, '[ 1 ] - SEARCH BY NAME')
+    Utility.stdscr.addstr(6, 20, '[ 2 ] - SEARCH BY PHONE NUMBER')
+
 # clear message line
 def clear_message():
     
