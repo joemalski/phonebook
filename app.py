@@ -60,15 +60,16 @@ def add():
     skins.main()
     skins.add()
 
+    # show total records
     lines = Utility.get_total_records()
     Utility.stdscr.addstr(23, 17, str(lines))
-    
     Utility.stdscr.refresh()
 
     # get the current id
     current_id = Utility.get_id()
     Utility.stdscr.addstr(5, 26, current_id)
 
+    # display cursor
     Utility.cursor_display(1)
 
     # accept and validate name
@@ -102,11 +103,11 @@ def add():
 
         skins.clear_message()
 
+    # checks if user wants to save or cancel
     Utility.cursor_display(0)
     Utility.stdscr.addstr(10, 27, '[ y ] - Save [ n ] Cancel')
     key = None
     
-    # check if user wants to save it or not
     # 'y'=121 and 'n'=110
     while (key != 121 and key != 110):
 
@@ -120,13 +121,15 @@ def add():
         elif key == 110:
             break
 
+    # refresh screen show records again
     Utility.stdscr.clear()
     load_main_details(Utility.records_per_page, 0)
-    Utility.current_page = 1 # refresh current page
+    Utility.current_page = 1
 
 
 def load_main_details(records_per_page, offset):
 
+    # clear screen
     Utility.stdscr.clear()
     skins.main()
 
@@ -142,23 +145,27 @@ def load_main_details(records_per_page, offset):
 
         # print total records at the bottom
         total = Utility.get_total_records()
-        Utility.stdscr.addstr(23, 17, "{} page: {}".format(total, Utility.current_page))
+        Utility.stdscr.addstr(23, 17, "{} | PAGE: {}".format(total, Utility.current_page))
     else:        
         Utility.stdscr.addstr(23, 50, '0 records found')
+
+    # refresh screen
+    Utility.stdscr.refresh()
 
 def main(stdscr):
 
     # pass stdscr to Utility stdscr property
     Utility.stdscr = stdscr
 
+    # hide cursor and get screen size
     curses.curs_set(False)
     y, x = Utility.stdscr.getmaxyx()
 
-    load_main_details(Utility.records_per_page, 0)
-
-    key = Utility.stdscr.getch()
+    # load records
+    load_main_details(Utility.records_per_page, 0)    
 
     # main event loop
+    key = Utility.stdscr.getch()
     while 1:
 
         # add new records
@@ -175,15 +182,16 @@ def main(stdscr):
             # toggle sort type value
             if Utility.sort_type == 0:
                 Utility.sort_type = 1
-
             elif Utility.sort_type == 1:
                 Utility.sort_type = 0
-                
+            
+            # reset current page to 1
             Utility.current_page = 1
 
             # reload records
             load_main_details(Utility.records_per_page, 0)
 
+            # show currently selected sort type
             if Utility.sort_type == 0:
                 sort_by = 'Ascending'
             elif Utility.sort_type == 1:
@@ -221,13 +229,16 @@ def main(stdscr):
             curses.resizeterm(25, 80)
             load_main_details(Utility.records_per_page, 0)
 
+        # capture keypress for main event loop
         key = Utility.stdscr.getch()
 
 
+# check files if it exist then run main wrapper of curses library
 msg = Utility.check_files_exists()
 if msg == True:
     curses.wrapper(main)
 else:
     print(msg)
 
+# exit program message
 print('Exited Phonebook. Bye!')

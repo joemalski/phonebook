@@ -88,12 +88,15 @@ def add():
     # set the color pair, foreground, background
     curses.init_pair(1, curses.COLOR_BLACK, curses.COLOR_WHITE)
 
+    # get screen height and width
     h, w = Utility.stdscr.getmaxyx()
 
+    # add header label
     Utility.stdscr.attron(curses.color_pair(1))
     Utility.stdscr.addstr(3, 20, 'ADD NEW RECORD')
     Utility.stdscr.attroff(curses.color_pair(1))
 
+    # add input labels
     Utility.stdscr.addstr(5, 20, '   ID: ')
     Utility.stdscr.addstr(6, 20, ' NAME: ')
     Utility.stdscr.addstr(7, 20, 'PHONE: ')
@@ -101,4 +104,5 @@ def add():
 # clear message line
 def clear_message():
     
+    # clears messages
     Utility.stdscr.addstr(23, 40, ' '*40)

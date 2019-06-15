@@ -179,7 +179,6 @@ class Utility:
             cls.stdscr.addstr(y_offset, x_offset, "ID: {}".format(records[i]['id']))
             cls.stdscr.addstr(y_offset+1, x_offset, "Name: {}".format(records[i]['name']))
             cls.stdscr.addstr(y_offset+2, x_offset, "Phone: {}".format(records[i]['phone']))
-            #cls.stdscr.getch()
             y_offset += 4
             i += 1
 
