@@ -115,10 +115,6 @@ def search():
     Utility.stdscr.addstr(3, 20, 'SEARCH RECORDS')
     Utility.stdscr.attroff(curses.color_pair(1))
 
-    # search input labels
-    Utility.stdscr.addstr(5, 20, '[ 1 ] - SEARCH BY NAME')
-    Utility.stdscr.addstr(6, 20, '[ 2 ] - SEARCH BY PHONE NUMBER')
-
 # clear message line
 def clear_message():
     

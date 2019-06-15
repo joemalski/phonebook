@@ -8,12 +8,79 @@ import math as m
 import modules.skins as skins
 from modules.utility import Utility
 
+
+def search_by_name():
+    
+    # add skins
+    Utility.stdscr.clear()
+    skins.main()
+    skins.search()
+
+    # display cursor
+    Utility.cursor_display(1)
+
+    Utility.stdscr.addstr(6, 20, 'Name: ')
+    Utility.stdscr.addstr(23, 50, 'Please enter a name.')
+    name = Utility.bytes_to_str(Utility.stdscr.getstr(6, 26, 30))
+    
+    while 1:
+        if name == '':
+            skins.clear_message()
+            Utility.stdscr.addstr(23, 50, 'Name must not be empty.')
+            Utility.stdscr.addstr(6, 27, ' '*30)
+            Utility.stdscr.refresh()
+            name = Utility.bytes_to_str(Utility.stdscr.getstr(6, 26, 30))
+        else:
+            break
+
+    # hide cursor
+    Utility.cursor_display(0)
+
+def search_by_phone():
+
+    # add skins
+    Utility.stdscr.clear()
+    skins.main()
+    skins.search()
+
+    # display cursor
+    Utility.cursor_display(1)
+
+    Utility.stdscr.addstr(6, 20, 'Phone: ')
+    Utility.stdscr.addstr(23, 50, 'Please enter a phone number.')    
+    phone = Utility.bytes_to_str(Utility.stdscr.getstr(6, 27, 7))
+
+    numbers = set('0123456789')
+    while 1:
+        if phone == '':
+            skins.clear_message()
+            Utility.stdscr.addstr(23, 50, 'Number must not be empty.')
+            Utility.stdscr.addstr(6, 27, ' '*7)
+            Utility.stdscr.refresh()
+            phone = Utility.bytes_to_str(Utility.stdscr.getstr(6, 27, 7))
+        elif set(phone).issubset(numbers) == False:
+            skins.clear_message()
+            Utility.stdscr.addstr(23, 50, 'Incorrect Number.')
+            Utility.stdscr.addstr(6, 27, ' '*7)
+            Utility.stdscr.refresh()
+            phone = Utility.bytes_to_str(Utility.stdscr.getstr(6, 27, 7))
+        else:
+            break
+
+    # hide cursor
+    Utility.cursor_display(0)
+
 def search():
     
     # add skins
     Utility.stdscr.clear()
     skins.main()
     skins.search()
+
+    # search input labels
+    Utility.stdscr.addstr(5, 20, '[ 1 ] - SEARCH BY NAME')
+    Utility.stdscr.addstr(6, 20, '[ 2 ] - SEARCH BY PHONE NUMBER')
+    Utility.stdscr.addstr(7, 20, '[ ESC ] - CANCEL')
 
     # check user selection
     Utility.stdscr.addstr(23, 50, 'Search, select your option.')
@@ -25,12 +92,22 @@ def search():
         if key == 49: # 1
             skins.clear_message()
             Utility.stdscr.addstr(23, 50, 'Search, by name')
+            search_by_name()
             break
 
         elif key == 50: # 2
             skins.clear_message()
             Utility.stdscr.addstr(23, 50, 'Search, by phone')
+            search_by_phone()
             break
+
+        elif key == 27:
+            break
+
+    # refresh screen show records again
+    Utility.stdscr.clear()
+    load_main_details(Utility.records_per_page, 0)
+    Utility.current_page = 1
 
 
 def next_record():
@@ -104,6 +181,7 @@ def add():
         if name == '':
             skins.clear_message()
             Utility.stdscr.addstr(23, 50, 'Name must not be empty.')
+            Utility.stdscr.addstr(6, 27, ' '*30)
             Utility.stdscr.refresh()
             name = Utility.bytes_to_str(Utility.stdscr.getstr(6, 27, 30))
         else:
@@ -120,11 +198,13 @@ def add():
         if phone == '':
             skins.clear_message()
             Utility.stdscr.addstr(23, 50, 'Number must not be empty.')
+            Utility.stdscr.addstr(7, 27, ' '*7)
             Utility.stdscr.refresh()
             phone = Utility.bytes_to_str(Utility.stdscr.getstr(7, 27, 7))
         elif set(phone).issubset(numbers) == False or len(phone) < 7:
             skins.clear_message()
             Utility.stdscr.addstr(23, 50, 'Incorrect Number.')
+            Utility.stdscr.addstr(6, 27, ' '*7)
             Utility.stdscr.refresh()
             phone = Utility.bytes_to_str(Utility.stdscr.getstr(7, 27, 7))
         else:
