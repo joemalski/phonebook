@@ -19,6 +19,7 @@ def search_by_name():
     # display cursor
     Utility.cursor_display(1)
 
+    # accept and validate name search
     Utility.stdscr.addstr(6, 20, 'Name: ')
     Utility.stdscr.addstr(23, 50, 'Please enter a name.')
     name = Utility.bytes_to_str(Utility.stdscr.getstr(6, 26, 30))
@@ -46,6 +47,7 @@ def search_by_phone():
     # display cursor
     Utility.cursor_display(1)
 
+    # accept and validate name search
     Utility.stdscr.addstr(6, 20, 'Phone: ')
     Utility.stdscr.addstr(23, 50, 'Please enter a phone number.')    
     phone = Utility.bytes_to_str(Utility.stdscr.getstr(6, 27, 7))
