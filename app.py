@@ -110,20 +110,20 @@ def add():
 
     # checks if user wants to save or cancel
     Utility.cursor_display(0)
-    Utility.stdscr.addstr(10, 27, '[ y ] - Save [ n ] Cancel')
+    Utility.stdscr.addstr(10, 27, '[ Y ] - Save [ N ] Cancel')
     key = None
     
-    # 'y'=121 and 'n'=110
+    # 'y'=121, 'Y'=89 and 'n'=110, 'N'=78
     while (key != 121 and key != 110):
 
         key = Utility.stdscr.getch()
         
-        if key == 121:
+        if key == 121 or key == 89:
             Utility.save_record(int(current_id), name, phone)
             Utility.update_current_id(int(current_id))
             break
 
-        elif key == 110:
+        elif key == 110 or key == 78:
             break
 
     # refresh screen show records again
