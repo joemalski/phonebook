@@ -73,35 +73,40 @@ def add():
     Utility.cursor_display(1)
 
     # accept and validate name
+    Utility.stdscr.addstr(23, 50, 'Please enter a name.')
     name = Utility.bytes_to_str(Utility.stdscr.getstr(6, 27, 30))
     while 1:
         if name == '':
-            Utility.stdscr.addstr(6, 27, ' '*30)
+            skins.clear_message()
             Utility.stdscr.addstr(23, 50, 'Name must not be empty.')
             Utility.stdscr.refresh()
             name = Utility.bytes_to_str(Utility.stdscr.getstr(6, 27, 30))
         else:
-            skins.clear_message()
             break
 
+    # clear validation messages
+    skins.clear_message()
+
     # accept and validate phone
+    Utility.stdscr.addstr(23, 50, 'Please enter a 7-digit number.')
     phone = Utility.bytes_to_str(Utility.stdscr.getstr(7, 27, 7))
     numbers = set('0123456789')
     while 1:
         if phone == '':
-            Utility.stdscr.addstr(7, 27, '       ')
+            skins.clear_message()
             Utility.stdscr.addstr(23, 50, 'Number must not be empty.')
             Utility.stdscr.refresh()
             phone = Utility.bytes_to_str(Utility.stdscr.getstr(7, 27, 7))
         elif set(phone).issubset(numbers) == False or len(phone) < 7:
-            Utility.stdscr.addstr(7, 27, '       ')
+            skins.clear_message()
             Utility.stdscr.addstr(23, 50, 'Incorrect Number.')
             Utility.stdscr.refresh()
             phone = Utility.bytes_to_str(Utility.stdscr.getstr(7, 27, 7))
         else:
             break
 
-        skins.clear_message()
+    # clear validation messages
+    skins.clear_message()
 
     # checks if user wants to save or cancel
     Utility.cursor_display(0)
