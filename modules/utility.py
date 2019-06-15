@@ -43,6 +43,7 @@ class Utility:
             raw_path = path.Path('flatfiles/')
             id = raw_path / 'id.txt'
             phonebook = raw_path / 'phonebook.txt'
+            temp_search = raw_path / 'temp_search.txt'
         
             if id.exists() != True:
                 file_id = open(id, 'w+')
@@ -52,6 +53,10 @@ class Utility:
             if phonebook.exists() != True:
                 file_phonebook = open(phonebook, 'w+')
                 file_phonebook.close()
+
+            if temp_search.exists() != True:
+                file_temp_search = open(temp_search, 'w+')
+                file_temp_search.close()
 
             return True
 
