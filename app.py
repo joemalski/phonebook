@@ -15,6 +15,24 @@ def search():
     skins.main()
     skins.search()
 
+    # check user selection
+    Utility.stdscr.addstr(23, 50, 'Search, select your option.')
+    key = None
+    # '1'=49 and '2'=50
+    while (key != 49 and key != 50):
+        key = Utility.stdscr.getch()
+
+        if key == 49: # 1
+            skins.clear_message()
+            Utility.stdscr.addstr(23, 50, 'Search, by name')
+            break
+
+        elif key == 50: # 2
+            skins.clear_message()
+            Utility.stdscr.addstr(23, 50, 'Search, by phone')
+            break
+
+
 def next_record():
 
     # get last page
