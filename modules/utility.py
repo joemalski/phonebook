@@ -19,6 +19,40 @@ class Utility:
     def __init__(self):
         pass
 
+    # name search algorithm
+    # basic search but you can modify it later to make it better
+    @classmethod
+    def check_name(cls, name, record):
+        if record['name'] == name:
+            return record
+
+    # search name and write results to temp_search.txt
+    @classmethod
+    def search_name(cls, name):
+        try:
+
+            raw_path = path.Path('flatfiles/')
+            phonebook = raw_path / 'phonebook.txt'
+            temp_search = raw_path / 'temp_search.txt'
+            file_phonebook = open(phonebook, 'r')
+
+            records = []
+            for phone in file_phonebook.readlines():
+                rec = cls.check_name(name, ast.literal_eval(phone))
+                if rec:
+                    records.append(rec)
+
+            file_phonebook.close()
+
+            file_temp_search = open(temp_search, 'w')
+            for record in records:    
+                file_temp_search.write(str(record)+'\n')
+
+            file_temp_search.close()            
+
+        except Exception as e:
+            return 'Exception: ' + str(e)        
+
     # get total records
     @classmethod
     def get_total_records(cls):
@@ -76,7 +110,7 @@ class Utility:
         except Exception as e:
             return 'Exception: ' + str(e)
 
-    # update current id
+    # update current id on screen
     @classmethod
     def update_current_id(cls, current_id):
         try:

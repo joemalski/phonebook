@@ -34,6 +34,8 @@ def search_by_name():
         else:
             break
 
+    Utility.search_name(name)
+
     # hide cursor
     Utility.cursor_display(0)
 
