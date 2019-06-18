@@ -35,10 +35,16 @@ def search_by_name():
     # add searchs results to temp_search.txt
     Utility.search_name(name)
 
-    
-
     # hide cursor
     Utility.cursor_display(0)
+
+    # add skins
+    Utility.stdscr.clear()
+    skins.main()
+    skins.search()
+
+    # CONTINUE HERE! Display the search results just like in the main page!
+
 
 def search_by_phone():
 
@@ -242,17 +248,22 @@ def add():
     Utility.current_page = 1
 
 
-def load_main_details(records_per_page, offset):
+def load_main_details(records_per_page, offset, file_to_read = 0):
 
     # clear screen
     Utility.stdscr.clear()
-    skins.main()
+
+    # load appropriate skin based on file_to_read
+    if file_to_read:
+        skins.search()
+    else:
+        skins.main()
 
     # check the sort_type
     if Utility.sort_type == 0:
-        records = Utility.get_records(records_per_page, offset)
+        records = Utility.get_records(records_per_page, offset, file_to_read)
     elif Utility.sort_type == 1:
-        records = Utility.get_records_reverse(records_per_page, offset)
+        records = Utility.get_records_reverse(records_per_page, offset, file_to_read)
 
     # show records    
     if records:
@@ -290,7 +301,6 @@ def main(stdscr):
         # search records
         elif key == curses.KEY_F2:
             search()
-            #Utility.stdscr.addstr(23, 50, 'Pressed F2      ')
 
         # sort order
         elif key == curses.KEY_F3:

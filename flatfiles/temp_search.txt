@@ -1,2 +1,0 @@
-{'id': '1', 'name': 'Joel Malinao', 'phone': '1112222'}
-{'id': '28', 'name': 'Joel Malinao', 'phone': '1231234'}
