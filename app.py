@@ -8,7 +8,6 @@ import math as m
 import modules.skins as skins
 from modules.utility import Utility
 
-
 def search_by_name():
     
     # add skins

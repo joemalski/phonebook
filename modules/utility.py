@@ -19,6 +19,18 @@ class Utility:
     def __init__(self):
         pass
 
+    @classmethod
+    def show_error(cls, error):
+        # set the color pair, foreground, background
+        cls.stdscr.attron(curses.color_pair(2))
+        cls.stdscr.addstr(0, 0, "Error: {}".format(str(error)))
+        cls.stdscr.attroff(curses.color_pair(2))
+        cls.stdscr.getch()
+
+    @classmethod
+    def show_search_result(cls):
+        pass
+
     # name search algorithm
     # basic search but you can modify it later to make it better
     @classmethod
@@ -39,6 +51,7 @@ class Utility:
             records = []
             for phone in file_phonebook.readlines():
                 rec = cls.check_name(name, ast.literal_eval(phone))
+
                 if rec:
                     records.append(rec)
 
@@ -48,10 +61,10 @@ class Utility:
             for record in records:    
                 file_temp_search.write(str(record)+'\n')
 
-            file_temp_search.close()            
+            file_temp_search.close()
 
         except Exception as e:
-            return 'Exception: ' + str(e)        
+            cls.show_error(e)       
 
     # get total records
     @classmethod
@@ -68,7 +81,7 @@ class Utility:
             return total_lines
 
         except Exception as e:
-            return 'Exception: ' + str(e)
+            cls.show_error(e)  
 
     # check files if exists, if not create it
     @classmethod
@@ -95,7 +108,7 @@ class Utility:
             return True
 
         except Exception as e:
-            return 'Exception: ' + str(e)
+            cls.show_error(e)  
 
     # get current id
     @classmethod
@@ -108,7 +121,7 @@ class Utility:
             return current_id[11:]
 
         except Exception as e:
-            return 'Exception: ' + str(e)
+            cls.show_error(e)  
 
     # update current id on screen
     @classmethod
@@ -124,8 +137,7 @@ class Utility:
             file_id.close()
 
         except Exception as e:
-            cls.stdscr.addstr(23, 50, str(e))
-            return 'Exception: ' + str(e)
+            cls.show_error(e)  
 
     # get phone records returns list
     # Note: offset should not be > total records
@@ -165,7 +177,7 @@ class Utility:
             return records
 
         except Exception as e:
-            return 'Exception: ' + str(e)
+            cls.show_error(e)  
 
     # get phone records in reverse order using the FileReadBackwards library
     # Note: offset should not be > total records
@@ -205,7 +217,7 @@ class Utility:
                 return records
 
         except Exception as e:
-            return 'Exception: ' + str(e)
+            cls.show_error(e)  
 
 
     # show records on main page
@@ -244,7 +256,7 @@ class Utility:
             file_phonebook.close()
 
         except Exception as e:
-            return 'Exception: ' + str(e)        
+            cls.show_error(e)       
 
     # convert bytes to plain string
     @classmethod
