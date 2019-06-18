@@ -21,8 +21,7 @@ def search_by_name():
     # accept and validate name search
     Utility.stdscr.addstr(6, 20, 'Name: ')
     Utility.stdscr.addstr(23, 50, 'Please enter a name.')
-    name = Utility.bytes_to_str(Utility.stdscr.getstr(6, 26, 30))
-    
+    name = Utility.bytes_to_str(Utility.stdscr.getstr(6, 26, 30))    
     while 1:
         if name == '':
             skins.clear_message()
@@ -33,7 +32,10 @@ def search_by_name():
         else:
             break
 
+    # add searchs results to temp_search.txt
     Utility.search_name(name)
+
+    
 
     # hide cursor
     Utility.cursor_display(0)

@@ -68,10 +68,15 @@ class Utility:
 
     # get total records
     @classmethod
-    def get_total_records(cls):
+    def get_total_records(cls, file_to_read = 0):
         try:
             raw_path = path.Path('flatfiles/')
-            phonebook = raw_path / 'phonebook.txt'
+
+            if file_to_read:
+                phonebook = raw_path / 'temp_search.txt'
+            else:
+                phonebook = raw_path / 'phonebook.txt'
+
             file_phonebook = open(phonebook, 'r')
 
             total_lines = 0
