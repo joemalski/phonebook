@@ -24,6 +24,11 @@ def main():
     title_line = GuiObject(h, w, ('-' * 80))
     Utility.stdscr.addstr(1, 0, title_line.text)
 
+    # search header label
+    Utility.stdscr.attron(curses.color_pair(1))
+    Utility.stdscr.addstr(3, 20, 'PHONE RECORDS')
+    Utility.stdscr.attroff(curses.color_pair(1))
+
     # add button
     add_btn = GuiObject(h, w, '[F1]')
     Utility.stdscr.attron(curses.color_pair(1))
@@ -104,9 +109,6 @@ def add():
 
 # search skin
 def search():
-
-    # set the color pair, foreground, background
-    curses.init_pair(1, curses.COLOR_BLACK, curses.COLOR_WHITE)
 
     # get screen height and width
     h, w = Utility.stdscr.getmaxyx()

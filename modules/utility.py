@@ -239,7 +239,7 @@ class Utility:
     # show records on main page
     @classmethod
     def show_records(cls, records):
-        y_offset = 3
+        y_offset = 5
         x_offset = 20
         i = 0
         for record in records:
