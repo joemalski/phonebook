@@ -142,10 +142,16 @@ class Utility:
     # get phone records returns list
     # Note: offset should not be > total records
     @classmethod
-    def get_records(cls, lines = 0, offset = 0):
+    def get_records(cls, lines = 0, offset = 0, file_to_read = 0):
         try:
             raw_path = path.Path('flatfiles/')
-            phonebook = raw_path / 'phonebook.txt'
+
+            if file_to_read:
+                phonebook = raw_path / 'temp_search.txt'
+            else:
+                phonebook = raw_path / 'phonebook.txt'
+
+
             file_phonebook = open(phonebook, 'r')
 
             records = []
@@ -182,10 +188,15 @@ class Utility:
     # get phone records in reverse order using the FileReadBackwards library
     # Note: offset should not be > total records
     @classmethod
-    def get_records_reverse(cls, lines = 0, offset = 0):
+    def get_records_reverse(cls, lines = 0, offset = 0, file_to_read = 0):
         try:
             raw_path = path.Path('flatfiles/')
-            phonebook = raw_path / 'phonebook.txt'
+
+            if file_to_read:
+                phonebook = raw_path / 'temp_search.txt'
+            else:
+                phonebook = raw_path / 'phonebook.txt'
+
             with FileReadBackwards(phonebook, encoding="utf-8") as file_phonebook:
 
                 records = []
