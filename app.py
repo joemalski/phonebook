@@ -298,7 +298,8 @@ def load_main_details(records_per_page, offset, file_to_read = 0):
         # print total records at the bottom
         total = Utility.get_total_records()
         Utility.stdscr.addstr(23, 17, "{} | PAGE: {}".format(total, Utility.current_page))
-    else:        
+    else:
+        Utility.stdscr.addstr(23, 17, '0')
         Utility.stdscr.addstr(23, 50, '0 records found')
 
     # refresh screen
