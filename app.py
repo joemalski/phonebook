@@ -41,12 +41,21 @@ def search_by_name():
     # load records
     load_main_details(Utility.records_per_page, 0, 1)   
 
+    # set default selector value
+    Utility.set_selector(1)
+
     # seach name event loop
     key = Utility.stdscr.getch()
     while 1:
 
+        # add new records
+        if key == curses.KEY_F1:
+            # reset current page to 1
+            Utility.current_page = 1
+            add()
+
         # search records
-        if key == curses.KEY_F2:
+        elif key == curses.KEY_F2:
             search()
 
         # sort order
@@ -144,8 +153,14 @@ def search_by_phone():
     key = Utility.stdscr.getch()
     while 1:
 
+        # add new records
+        if key == curses.KEY_F1:
+            # reset current page to 1
+            Utility.current_page = 1
+            add()
+
         # search records
-        if key == curses.KEY_F2:
+        elif key == curses.KEY_F2:
             search()
 
         # sort order
@@ -405,7 +420,10 @@ def main(stdscr):
     y, x = Utility.stdscr.getmaxyx()
 
     # load records
-    load_main_details(Utility.records_per_page, 0)    
+    load_main_details(Utility.records_per_page, 0)
+
+    # set default selector value
+    Utility.set_selector(1)
 
     # main event loop
     key = Utility.stdscr.getch()
@@ -413,10 +431,14 @@ def main(stdscr):
 
         # add new records
         if key == curses.KEY_F1:
+            # reset current page to 1
+            Utility.current_page = 1
             add()
 
         # search records
         elif key == curses.KEY_F2:
+            # reset current page to 1
+            Utility.current_page = 1
             search()
 
         # sort order

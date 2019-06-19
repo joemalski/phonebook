@@ -266,12 +266,42 @@ class Utility:
         except Exception as e:
             cls.show_error(e)  
 
+    # set selector to record, value are hardcoded and printed directly at location
+    @classmethod
+    def set_selector(cls, number):
+        if number == 1:
+            cls.stdscr.attron(curses.color_pair(1))
+            cls.stdscr.addstr(5, 20, '|')
+            cls.stdscr.addstr(6, 20, '|')
+            cls.stdscr.addstr(7, 20, '|')
+            cls.stdscr.attroff(curses.color_pair(1))
+
+        elif number == 2:
+            cls.stdscr.attron(curses.color_pair(1))
+            cls.stdscr.addstr(9,  20, '|')
+            cls.stdscr.addstr(10, 20, '|')
+            cls.stdscr.addstr(11, 20, '|')
+            cls.stdscr.attroff(curses.color_pair(1))
+
+        elif number == 3:
+            cls.stdscr.attron(curses.color_pair(1))
+            cls.stdscr.addstr(13, 20, '|')
+            cls.stdscr.addstr(14, 20, '|')
+            cls.stdscr.addstr(15, 20, '|')
+            cls.stdscr.attroff(curses.color_pair(1))
+
+        elif number == 4:
+            cls.stdscr.attron(curses.color_pair(1))
+            cls.stdscr.addstr(17, 20, '|')
+            cls.stdscr.addstr(18, 20, '|')
+            cls.stdscr.addstr(19, 20, '|')
+            cls.stdscr.attroff(curses.color_pair(1))
 
     # show records on main page
     @classmethod
     def show_records(cls, records):
         y_offset = 5
-        x_offset = 20
+        x_offset = 22
         i = 0
         for record in records:
             cls.stdscr.addstr(y_offset, x_offset, "ID: {}".format(records[i]['id']))
