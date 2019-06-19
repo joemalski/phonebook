@@ -159,8 +159,8 @@ def next_record():
 
     # go to next page and check if > last page
     page_num += 1
-    if page_num == last_page:
-        page_num = last_page - 1
+    if page_num > last_page:
+        page_num = last_page
 
     # update page number
     Utility.current_page = page_num
@@ -168,10 +168,9 @@ def next_record():
     # get records equivalent in page number, start and end record index
     end_index = page_num * Utility.records_per_page
     start_index = end_index - (Utility.records_per_page - 1)
-    next_page_index = end_index + 1
 
     # show next page
-    load_main_details(Utility.records_per_page, next_page_index)
+    load_main_details(Utility.records_per_page, start_index)
 
 def previous_record():
 
@@ -180,7 +179,7 @@ def previous_record():
 
     # go to previous page and check if < 1
     page_num -= 1
-    if page_num == 0:
+    if page_num < 1:
         page_num = 1
 
     # update current page
