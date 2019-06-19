@@ -27,10 +27,6 @@ class Utility:
         cls.stdscr.attroff(curses.color_pair(2))
         cls.stdscr.getch()
 
-    @classmethod
-    def show_search_result(cls):
-        pass
-
     # phone search algorithm
     # basic search but you can modify it later to make it better
     @classmethod
