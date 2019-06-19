@@ -38,10 +38,6 @@ def search_by_name():
     # hide cursor
     Utility.cursor_display(0)
 
-    # hide cursor and get screen size
-    curses.curs_set(False)
-    y, x = Utility.stdscr.getmaxyx()
-
     # load records
     load_main_details(Utility.records_per_page, 0, 1)   
 
