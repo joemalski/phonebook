@@ -44,8 +44,13 @@ def search_by_name():
     # CONTINUE HERE! Display the search results just like in the main page!
     key = Utility.stdscr.getch()
     while 1:
+
+        # search records
+        if key == curses.KEY_F2:
+            search()
+
         # show previous records
-        if key == curses.KEY_F4:
+        elif key == curses.KEY_F4:
             previous_record(1)
             #Utility.stdscr.addstr(23, 50, 'Pressed Previous   ')
 

@@ -26,7 +26,7 @@ def main():
 
     # search header label
     Utility.stdscr.attron(curses.color_pair(1))
-    Utility.stdscr.addstr(3, 20, 'PHONE RECORDS')
+    Utility.stdscr.addstr(3, 20, 'ALL PHONE RECORDS')
     Utility.stdscr.attroff(curses.color_pair(1))
 
     # add button
