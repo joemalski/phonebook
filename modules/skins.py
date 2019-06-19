@@ -25,7 +25,8 @@ def main():
     Utility.stdscr.addstr(1, 0, title_line.text)
 
     # search header label
-    Utility.stdscr.attron(curses.color_pair(1))
+    Utility.stdscr.addstr(3, 20, '                 ')
+    Utility.stdscr.attron(curses.color_pair(1))    
     Utility.stdscr.addstr(3, 20, 'ALL PHONE RECORDS')
     Utility.stdscr.attroff(curses.color_pair(1))
 
@@ -98,6 +99,7 @@ def add():
     h, w = Utility.stdscr.getmaxyx()
 
     # add header label
+    Utility.stdscr.addstr(3, 20, '                 ')
     Utility.stdscr.attron(curses.color_pair(1))
     Utility.stdscr.addstr(3, 20, 'ADD NEW RECORD')
     Utility.stdscr.attroff(curses.color_pair(1))
@@ -114,6 +116,7 @@ def search():
     h, w = Utility.stdscr.getmaxyx()
 
     # search header label
+    Utility.stdscr.addstr(3, 20, '                 ')
     Utility.stdscr.attron(curses.color_pair(1))
     Utility.stdscr.addstr(3, 20, 'SEARCH RECORDS')
     Utility.stdscr.attroff(curses.color_pair(1))
