@@ -2,11 +2,11 @@
 {'id': '2', 'name': 'Vladimir Putin', 'phone': '1234567'}
 {'id': '3', 'name': 'Sergie', 'phone': '1231234'}
 {'id': '4', 'name': 'The quick brown fox jumps over', 'phone': '1234567'}
-{'id': '5', 'name': 'Baby Duck', 'phone': '7654323'}
+{'id': '5', 'name': 'Joel Malinao', 'phone': '7654323'}
 {'id': '6', 'name': 'Bruno Mars', 'phone': '1231234'}
 {'id': '7', 'name': 'Joe Romano', 'phone': '1234567'}
 {'id': '8', 'name': 'Duff Mac', 'phone': '1231234'}
-{'id': '9', 'name': 'Test Account', 'phone': '3334444'}
+{'id': '9', 'name': 'Joel Malinao', 'phone': '3334444'}
 {'id': '10', 'name': 'Duck Go', 'phone': '4445555'}
 {'id': '11', 'name': 'John Mac', 'phone': '1234567'}
 {'id': '12', 'name': 'Jake Snake', 'phone': '1122334'}

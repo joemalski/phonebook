@@ -38,21 +38,25 @@ def search_by_name():
     # hide cursor
     Utility.cursor_display(0)
 
-    # add skins
-    Utility.stdscr.clear()
-    skins.main()
-    skins.search()
+    # hide cursor and get screen size
+    curses.curs_set(False)
+    y, x = Utility.stdscr.getmaxyx()
+
+    # load records
+    load_main_details(Utility.records_per_page, 0, 1)   
 
     # CONTINUE HERE! Display the search results just like in the main page!
     key = Utility.stdscr.getch()
     while 1:
         # show previous records
         if key == curses.KEY_F4:
-            Utility.stdscr.addstr(23, 50, 'Pressed Previous   ')
+            previous_record(1)
+            #Utility.stdscr.addstr(23, 50, 'Pressed Previous   ')
 
         # show next records
         elif key == curses.KEY_F5:
-            Utility.stdscr.addstr(23, 50, 'Pressed Next   ')
+            next_record(1)
+            #Utility.stdscr.addstr(23, 50, 'Pressed Next   ')
 
         # escape to exit
         elif key == 27:
@@ -148,10 +152,10 @@ def search():
     Utility.current_page = 1
 
 
-def next_record():
+def next_record(file_to_read = 0):
 
     # get last page
-    total_row_count = Utility.get_total_records()
+    total_row_count = Utility.get_total_records(file_to_read)
     last_page = m.ceil(total_row_count/Utility.records_per_page)
 
     # get current page
@@ -170,9 +174,9 @@ def next_record():
     start_index = end_index - (Utility.records_per_page - 1)
 
     # show next page
-    load_main_details(Utility.records_per_page, start_index)
+    load_main_details(Utility.records_per_page, start_index, file_to_read)
 
-def previous_record():
+def previous_record(file_to_read = 0):
 
     # get current page
     page_num = Utility.current_page
@@ -190,7 +194,7 @@ def previous_record():
     start_index = end_index - (Utility.records_per_page - 1)  
 
     # show next page
-    load_main_details(Utility.records_per_page, start_index)
+    load_main_details(Utility.records_per_page, start_index, file_to_read)
 
 def add():
 
@@ -281,6 +285,7 @@ def load_main_details(records_per_page, offset, file_to_read = 0):
 
     # load appropriate skin based on file_to_read
     if file_to_read:
+        skins.main()
         skins.search()
     else:
         skins.main()
@@ -296,7 +301,7 @@ def load_main_details(records_per_page, offset, file_to_read = 0):
         Utility.show_records(records)
 
         # print total records at the bottom
-        total = Utility.get_total_records()
+        total = Utility.get_total_records(file_to_read)
         Utility.stdscr.addstr(23, 17, "{} | PAGE: {}".format(total, Utility.current_page))
     else:
         Utility.stdscr.addstr(23, 17, '0')
