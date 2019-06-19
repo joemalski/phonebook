@@ -58,6 +58,29 @@ def search_by_name():
             next_record(1)
             #Utility.stdscr.addstr(23, 50, 'Pressed Next   ')
 
+        # sort order
+        elif key == curses.KEY_F3:
+
+            # toggle sort type value
+            if Utility.sort_type == 0:
+                Utility.sort_type = 1
+            elif Utility.sort_type == 1:
+                Utility.sort_type = 0
+            
+            # reset current page to 1
+            Utility.current_page = 1
+
+            # reload records
+            load_main_details(Utility.records_per_page, 0, 1)
+
+            # show currently selected sort type
+            if Utility.sort_type == 0:
+                sort_by = 'Ascending'
+            elif Utility.sort_type == 1:
+                sort_by = 'Descending'
+
+            Utility.stdscr.addstr(23, 50, "Sort By: {}".format(sort_by))
+
         # escape to exit
         elif key == 27:
             break
