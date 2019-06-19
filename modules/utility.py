@@ -31,6 +31,13 @@ class Utility:
     def show_search_result(cls):
         pass
 
+    # phone search algorithm
+    # basic search but you can modify it later to make it better
+    @classmethod
+    def check_phone(cls, phone, record):
+        if record['phone'] == phone:
+            return record
+
     # name search algorithm
     # basic search but you can modify it later to make it better
     @classmethod
@@ -49,8 +56,8 @@ class Utility:
             file_phonebook = open(phonebook, 'r')
 
             records = []
-            for phone in file_phonebook.readlines():
-                rec = cls.check_name(name, ast.literal_eval(phone))
+            for phone_record in file_phonebook.readlines():
+                rec = cls.check_name(name, ast.literal_eval(phone_record))
 
                 if rec:
                     records.append(rec)
@@ -64,7 +71,35 @@ class Utility:
             file_temp_search.close()
 
         except Exception as e:
-            cls.show_error(e)       
+            cls.show_error(e)
+
+    # search phone and write results to temp_search.txt
+    @classmethod
+    def search_phone(cls, phone_number):
+        try:
+
+            raw_path = path.Path('flatfiles/')
+            phonebook = raw_path / 'phonebook.txt'
+            temp_search = raw_path / 'temp_search.txt'
+            file_phonebook = open(phonebook, 'r')
+
+            records = []
+            for phone_record in file_phonebook.readlines():
+                rec = cls.check_phone(phone_number, ast.literal_eval(phone_record))
+
+                if rec:
+                    records.append(rec)
+
+            file_phonebook.close()
+
+            file_temp_search = open(temp_search, 'w')
+            for record in records:    
+                file_temp_search.write(str(record)+'\n')
+
+            file_temp_search.close()
+
+        except Exception as e:
+            cls.show_error(e)  
 
     # get total records
     @classmethod

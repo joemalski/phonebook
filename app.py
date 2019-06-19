@@ -49,14 +49,6 @@ def search_by_name():
         if key == curses.KEY_F2:
             search()
 
-        # show previous records
-        elif key == curses.KEY_F4:
-            previous_page(1)
-
-        # show next records
-        elif key == curses.KEY_F5:
-            next_page(1)
-
         # sort order
         elif key == curses.KEY_F3:
 
@@ -79,6 +71,14 @@ def search_by_name():
                 sort_by = 'Descending'
 
             Utility.stdscr.addstr(23, 50, "Sort By: {}".format(sort_by))
+
+        # show previous records
+        elif key == curses.KEY_F4:
+            previous_page(1)
+
+        # show next records
+        elif key == curses.KEY_F5:
+            next_page(1)
 
         # escape to exit
         elif key == 27:
@@ -131,8 +131,71 @@ def search_by_phone():
         else:
             break
 
+    # add searchs results to temp_search.txt
+    Utility.search_phone(phone)
+
     # hide cursor
     Utility.cursor_display(0)
+
+    # load records
+    load_main_details(Utility.records_per_page, 0, 1)   
+
+    # seach name event loop
+    key = Utility.stdscr.getch()
+    while 1:
+
+        # search records
+        if key == curses.KEY_F2:
+            search()
+
+        # sort order
+        elif key == curses.KEY_F3:
+
+            # toggle sort type value
+            if Utility.sort_type == 0:
+                Utility.sort_type = 1
+            elif Utility.sort_type == 1:
+                Utility.sort_type = 0
+            
+            # reset current page to 1
+            Utility.current_page = 1
+
+            # reload records
+            load_main_details(Utility.records_per_page, 0, 1)
+
+            # show currently selected sort type
+            if Utility.sort_type == 0:
+                sort_by = 'Ascending'
+            elif Utility.sort_type == 1:
+                sort_by = 'Descending'
+
+            Utility.stdscr.addstr(23, 50, "Sort By: {}".format(sort_by))
+
+        # show previous records
+        elif key == curses.KEY_F4:
+            previous_page(1)
+
+        # show next records
+        elif key == curses.KEY_F5:
+            next_page(1)
+
+        # escape to exit
+        elif key == 27:
+            break
+
+        # enter key for selecting a record
+        elif key == 10:
+            Utility.stdscr.addstr(23, 50, 'Pressed ENTER   ')
+
+        # navigating records using arrow up
+        elif key == curses.KEY_UP:
+            Utility.stdscr.addstr(23, 50, 'Pressed Up Key  ')
+
+        # navigating records using arrow up
+        elif key == curses.KEY_DOWN:
+            Utility.stdscr.addstr(23, 50, 'Pressed Down Key')
+
+        key = Utility.stdscr.getch()
 
 def search():
     
