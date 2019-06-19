@@ -9,7 +9,7 @@ import modules.skins as skins
 from modules.utility import Utility
 
 def search_by_name():
-    
+   
     # add skins
     Utility.stdscr.clear()
     skins.main()
@@ -44,6 +44,33 @@ def search_by_name():
     skins.search()
 
     # CONTINUE HERE! Display the search results just like in the main page!
+    key = Utility.stdscr.getch()
+    while 1:
+        # show previous records
+        if key == curses.KEY_F4:
+            Utility.stdscr.addstr(23, 50, 'Pressed Previous   ')
+
+        # show next records
+        elif key == curses.KEY_F5:
+            Utility.stdscr.addstr(23, 50, 'Pressed Next   ')
+
+        # escape to exit
+        elif key == 27:
+            break
+
+        # enter key for selecting a record
+        elif key == 10:
+            Utility.stdscr.addstr(23, 50, 'Pressed ENTER   ')
+
+        # navigating records using arrow up
+        elif key == curses.KEY_UP:
+            Utility.stdscr.addstr(23, 50, 'Pressed Up Key  ')
+
+        # navigating records using arrow up
+        elif key == curses.KEY_DOWN:
+            Utility.stdscr.addstr(23, 50, 'Pressed Down Key')
+
+        key = Utility.stdscr.getch()
 
 
 def search_by_phone():
