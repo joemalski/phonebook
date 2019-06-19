@@ -41,7 +41,7 @@ def search_by_name():
     # load records
     load_main_details(Utility.records_per_page, 0, 1)   
 
-    # CONTINUE HERE! Display the search results just like in the main page!
+    # seach name event loop
     key = Utility.stdscr.getch()
     while 1:
 
@@ -51,13 +51,11 @@ def search_by_name():
 
         # show previous records
         elif key == curses.KEY_F4:
-            previous_record(1)
-            #Utility.stdscr.addstr(23, 50, 'Pressed Previous   ')
+            previous_page(1)
 
         # show next records
         elif key == curses.KEY_F5:
-            next_record(1)
-            #Utility.stdscr.addstr(23, 50, 'Pressed Next   ')
+            next_page(1)
 
         # sort order
         elif key == curses.KEY_F3:
@@ -176,7 +174,7 @@ def search():
     Utility.current_page = 1
 
 
-def next_record(file_to_read = 0):
+def next_page(file_to_read = 0):
 
     # get last page
     total_row_count = Utility.get_total_records(file_to_read)
@@ -200,7 +198,7 @@ def next_record(file_to_read = 0):
     # show next page
     load_main_details(Utility.records_per_page, start_index, file_to_read)
 
-def previous_record(file_to_read = 0):
+def previous_page(file_to_read = 0):
 
     # get current page
     page_num = Utility.current_page
@@ -387,11 +385,11 @@ def main(stdscr):
 
         # show previous records
         elif key == curses.KEY_F4:
-            previous_record()
+            previous_page()
 
         # show next records
         elif key == curses.KEY_F5:
-            next_record()
+            next_page()
 
         # enter key for selecting a record
         elif key == 10:
