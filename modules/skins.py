@@ -17,7 +17,7 @@ def main():
     h, w = Utility.stdscr.getmaxyx()
 
     # title
-    title = GuiObject(h, w, 'My Phonebook')
+    title = GuiObject(h, w, 'M Y   P H O N E B O O K')
     Utility.stdscr.addstr(0, title.w_center_text(), title.text)
 
     # title line

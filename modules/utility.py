@@ -17,7 +17,7 @@ class Utility:
     
     current_page = 1 # the current page ofcourse!
     records_per_page = 4 # ideal value for 80 x 25 terminal size 
-    
+
     selector = 1 # selector the indicator for the arrow up and arrow down
     records_on_page = None # save the current records (actual data) on the page
     total_records_on_page = None # save the total current records on the page
@@ -350,8 +350,8 @@ class Utility:
         i = 0
         for record in records:
             cls.stdscr.addstr(y_offset, x_offset, "ID: {}".format(records[i]['id']))
-            cls.stdscr.addstr(y_offset+1, x_offset, "Name: {}".format(records[i]['name']))
-            cls.stdscr.addstr(y_offset+2, x_offset, "Phone: {}".format(records[i]['phone']))
+            cls.stdscr.addstr(y_offset+1, x_offset, "NAME: {}".format(records[i]['name']))
+            cls.stdscr.addstr(y_offset+2, x_offset, "PHONE: {}".format(records[i]['phone']))
             y_offset += 4
             i += 1
 
