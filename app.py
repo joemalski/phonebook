@@ -56,6 +56,8 @@ def search_by_name():
 
         # search records
         elif key == curses.KEY_F2:
+            # reset current page to 1
+            Utility.current_page = 1
             search()
 
         # sort order
@@ -149,6 +151,9 @@ def search_by_phone():
     # load records
     load_main_details(Utility.records_per_page, 0, 1)   
 
+    # set default selector value
+    Utility.set_selector(1)
+
     # seach name event loop
     key = Utility.stdscr.getch()
     while 1:
@@ -161,6 +166,8 @@ def search_by_phone():
 
         # search records
         elif key == curses.KEY_F2:
+            # reset current page to 1
+            Utility.current_page = 1
             search()
 
         # sort order
@@ -482,11 +489,18 @@ def main(stdscr):
 
         # navigating records using arrow up
         elif key == curses.KEY_UP:
-            Utility.stdscr.addstr(23, 50, 'Pressed Up Key  ')
+            Utility.stdscr.addstr(23, 50, 'Pressed Up Key')
 
         # navigating records using arrow up
         elif key == curses.KEY_DOWN:
-            Utility.stdscr.addstr(23, 50, 'Pressed Down Key')
+            if Utility.selector < Utility.records_per_page:
+                Utility.selector += 1
+                Utility.set_selector(Utility.selector)
+            elif Utility.selector == Utility.records_per_page:
+                Utility.selector = 1
+                next_page()
+                Utility.set_selector(Utility.selector)
+            #Utility.stdscr.addstr(23, 50, 'Pressed Down Key')
 
         # checks for window resize event
         elif curses.is_term_resized(y, x) == True:

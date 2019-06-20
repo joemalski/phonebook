@@ -15,6 +15,7 @@ class Utility:
     stdscr = None # holds the stdscr from the curses library
     current_page = 1
     records_per_page = 4 # ideal value for 80 x 25 terminal size 
+    selector = 1 # selector the indicator for the arrow up and arrow down
 
     def __init__(self):
         pass
@@ -270,27 +271,58 @@ class Utility:
     @classmethod
     def set_selector(cls, number):
         if number == 1:
+            cls.selector = 1
             cls.stdscr.attron(curses.color_pair(1))
             cls.stdscr.addstr(5, 20, '|')
             cls.stdscr.addstr(6, 20, '|')
             cls.stdscr.addstr(7, 20, '|')
             cls.stdscr.attroff(curses.color_pair(1))
 
+            cls.stdscr.addstr(9,  20, ' ')
+            cls.stdscr.addstr(10, 20, ' ')
+            cls.stdscr.addstr(11, 20, ' ')
+
         elif number == 2:
+            cls.selector = 2
+
+            cls.stdscr.addstr(5, 20, ' ')
+            cls.stdscr.addstr(6, 20, ' ')
+            cls.stdscr.addstr(7, 20, ' ')
+
             cls.stdscr.attron(curses.color_pair(1))
             cls.stdscr.addstr(9,  20, '|')
             cls.stdscr.addstr(10, 20, '|')
             cls.stdscr.addstr(11, 20, '|')
             cls.stdscr.attroff(curses.color_pair(1))
 
+            cls.stdscr.addstr(13, 20, ' ')
+            cls.stdscr.addstr(14, 20, ' ')
+            cls.stdscr.addstr(15, 20, ' ')
+
         elif number == 3:
+            cls.selector = 3
+
+            cls.stdscr.addstr(9,  20, ' ')
+            cls.stdscr.addstr(10, 20, ' ')
+            cls.stdscr.addstr(11, 20, ' ')
+
             cls.stdscr.attron(curses.color_pair(1))
             cls.stdscr.addstr(13, 20, '|')
             cls.stdscr.addstr(14, 20, '|')
             cls.stdscr.addstr(15, 20, '|')
             cls.stdscr.attroff(curses.color_pair(1))
 
+            cls.stdscr.addstr(17, 20, ' ')
+            cls.stdscr.addstr(18, 20, ' ')
+            cls.stdscr.addstr(19, 20, ' ')
+
         elif number == 4:
+            cls.selector = 4
+
+            cls.stdscr.addstr(13, 20, ' ')
+            cls.stdscr.addstr(14, 20, ' ')
+            cls.stdscr.addstr(15, 20, ' ')
+
             cls.stdscr.attron(curses.color_pair(1))
             cls.stdscr.addstr(17, 20, '|')
             cls.stdscr.addstr(18, 20, '|')
