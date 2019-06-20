@@ -226,10 +226,20 @@ def search():
     skins.main()
     skins.search()
 
-    # search input labels
-    Utility.stdscr.addstr(5, 20, '[ 1 ] - SEARCH BY NAME')
-    Utility.stdscr.addstr(6, 20, '[ 2 ] - SEARCH BY PHONE NUMBER')
-    Utility.stdscr.addstr(7, 20, '[ ESC ] - CANCEL')
+    # search input labels 
+    # *** Fix color and standardize it !!!
+    Utility.stdscr.attron(curses.color_pair(1))
+    Utility.stdscr.addstr(5, 20, '[1]')
+    Utility.stdscr.attroff(curses.color_pair(1))
+    Utility.stdscr.addstr(5, 23, ' - SEARCH BY NAME')
+    Utility.stdscr.attron(curses.color_pair(1))
+    Utility.stdscr.addstr(7, 20, '[2]')
+    Utility.stdscr.attroff(curses.color_pair(1))
+    Utility.stdscr.addstr(7, 23, ' - SEARCH BY PHONE NUMBER')
+    Utility.stdscr.attron(curses.color_pair(1))
+    Utility.stdscr.addstr(9, 20, '[ESC]')
+    Utility.stdscr.attroff(curses.color_pair(1))
+    Utility.stdscr.addstr(9, 25, ' - CANCEL')
 
     # check user selection
     Utility.stdscr.addstr(23, 50, 'Search, select your option.')
@@ -364,26 +374,62 @@ def add():
 
     # checks if user wants to save or cancel
     Utility.cursor_display(0)
-    Utility.stdscr.addstr(10, 27, '[ Y ] - Save [ N ] Cancel')
+    Utility.stdscr.attron(curses.color_pair(1))
+    Utility.stdscr.addstr(10, 20, '[S]')
+    Utility.stdscr.attroff(curses.color_pair(1))
+    Utility.stdscr.addstr(10, 23, ' - SAVE')
+    Utility.stdscr.attron(curses.color_pair(1))
+    Utility.stdscr.addstr(12, 20, '[ESC]')
+    Utility.stdscr.attroff(curses.color_pair(1))
+    Utility.stdscr.addstr(12, 25, ' - CANCEL')
+    
     key = None
     
-    # 'y'=121, 'Y'=89 and 'n'=110, 'N'=78
-    while (key != 121 and key != 110):
+    # 's'=115, 'S'=83 and ESC = 27
+    while (key != 83 and key != 115):
 
         key = Utility.stdscr.getch()
         
-        if key == 121 or key == 89:
+        if key == 115 or key == 83:
             Utility.save_record(int(current_id), name, phone)
             Utility.update_current_id(int(current_id))
             break
 
-        elif key == 110 or key == 78:
+        elif key == 27:
             break
 
     # refresh screen show records again
     Utility.stdscr.clear()
     load_main_details(Utility.records_per_page, 0)
     Utility.current_page = 1
+
+def selected_record():
+
+    # show selected record skin
+    Utility.stdscr.clear()
+    skins.main()
+    skins.selected_record()    
+
+    # show actual selected record
+    selected_record = Utility.records_on_page[Utility.selector - 1]
+    Utility.stdscr.addstr(5, 27, str(selected_record['id']))
+    Utility.stdscr.addstr(6, 27, str(selected_record['name']))
+    Utility.stdscr.addstr(7, 27, str(selected_record['phone']))
+
+    Utility.stdscr.attron(curses.color_pair(1))
+    Utility.stdscr.addstr(10, 20, '[E]')
+    Utility.stdscr.attroff(curses.color_pair(1))
+    Utility.stdscr.addstr(10, 23, ' - EDIT')
+    Utility.stdscr.attron(curses.color_pair(1))
+    Utility.stdscr.addstr(12, 20, '[D]')
+    Utility.stdscr.attroff(curses.color_pair(1))
+    Utility.stdscr.addstr(12, 23, ' - DELETE')
+    Utility.stdscr.attron(curses.color_pair(1))
+    Utility.stdscr.addstr(14, 20, '[ESC]')
+    Utility.stdscr.attroff(curses.color_pair(1))
+    Utility.stdscr.addstr(14, 25, ' - CANCEL')
+
+    # CONTINUE HERE !!!, create event loop for selection
 
 
 def load_main_details(records_per_page, offset, file_to_read = 0):
@@ -493,10 +539,9 @@ def main(stdscr):
             Utility.set_selector(1)
 
         # enter key for selecting a record
-        elif key == 10:
-            # Utility.records_on_page[Utility.selector - 1
-            # Next Mission!
-            Utility.stdscr.addstr(23, 50, 'Pressed ENTER   ')
+        elif key == 10:            
+            selected_record()
+            #Utility.stdscr.addstr(23, 50, 'Pressed ENTER   ')
 
         # navigating records using arrow up
         elif key == curses.KEY_UP:

@@ -17,7 +17,7 @@ def main():
     h, w = Utility.stdscr.getmaxyx()
 
     # title
-    title = GuiObject(h, w, 'M Y   P H O N E B O O K')
+    title = GuiObject(h, w, 'M Y   P H O N E B O O K   v 1 . 0')
     Utility.stdscr.addstr(0, title.w_center_text(), title.text)
 
     # title line
@@ -92,9 +92,6 @@ def main():
 # add skin
 def add():
 
-    # set the color pair, foreground, background
-    curses.init_pair(1, curses.COLOR_BLACK, curses.COLOR_WHITE)
-
     # get screen height and width
     h, w = Utility.stdscr.getmaxyx()
 
@@ -102,6 +99,23 @@ def add():
     Utility.stdscr.addstr(3, 20, '                 ')
     Utility.stdscr.attron(curses.color_pair(1))
     Utility.stdscr.addstr(3, 20, 'ADD NEW RECORD')
+    Utility.stdscr.attroff(curses.color_pair(1))
+
+    # add input labels
+    Utility.stdscr.addstr(5, 20, '   ID: ')
+    Utility.stdscr.addstr(6, 20, ' NAME: ')
+    Utility.stdscr.addstr(7, 20, 'PHONE: ')
+
+# selected record skin
+def selected_record():
+
+    # get screen height and width
+    h, w = Utility.stdscr.getmaxyx()
+
+    # add header label
+    Utility.stdscr.addstr(3, 20, '                 ')
+    Utility.stdscr.attron(curses.color_pair(1))
+    Utility.stdscr.addstr(3, 20, 'SELCTED RECORD')
     Utility.stdscr.attroff(curses.color_pair(1))
 
     # add input labels
