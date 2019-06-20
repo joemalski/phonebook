@@ -81,6 +81,20 @@ def main():
     next_btn_desc = GuiObject(h, w, ' NEXT')
     Utility.stdscr.addstr(15, 6, next_btn_desc.text)
 
+    # arrows up, down and enter
+    up_arrow_btn = GuiObject(h, w, '[↑↓]')
+    Utility.stdscr.attron(curses.color_pair(1))
+    Utility.stdscr.addstr(17, 2, up_arrow_btn.text)
+    Utility.stdscr.attroff(curses.color_pair(1))
+    arrow_up_btn_desc = GuiObject(h, w, ' NAVIGATION')
+    Utility.stdscr.addstr(17, 6, arrow_up_btn_desc.text)
+    entry_btn = GuiObject(h, w, '[ENTER]')
+    Utility.stdscr.attron(curses.color_pair(1))
+    Utility.stdscr.addstr(19, 2, entry_btn.text)
+    Utility.stdscr.attroff(curses.color_pair(1))
+    entry_btn_desc = GuiObject(h, w, ' SELECTION')
+    Utility.stdscr.addstr(19, 9, entry_btn_desc.text)
+
     # footer line
     footer_line = GuiObject(h, w, ('-' * 80))
     Utility.stdscr.addstr(22, 0, footer_line.text)
