@@ -13,9 +13,10 @@ class Utility:
     # class variables    
     sort_type = 0 # 0 - asending, 1 - descending
     stdscr = None # holds the stdscr from the curses library
-    current_page = 1
+    current_page = 1 # the current page ofcourse!
     records_per_page = 4 # ideal value for 80 x 25 terminal size 
     selector = 1 # selector the indicator for the arrow up and arrow down
+    records_on_page = None # save the current records on the page
 
     def __init__(self):
         pass
@@ -341,6 +342,9 @@ class Utility:
             cls.stdscr.addstr(y_offset+2, x_offset, "Phone: {}".format(records[i]['phone']))
             y_offset += 4
             i += 1
+
+        # save current record on page
+        cls.records_on_page = records
 
     # save record
     @classmethod
