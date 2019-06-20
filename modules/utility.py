@@ -6,22 +6,33 @@
 import pathlib as path
 import ast
 import curses
+import math as m
 from file_read_backwards import FileReadBackwards
 
 class Utility:
 
-    # class variables    
-    sort_type = 0 # 0 - asending, 1 - descending
+    # class variables
     stdscr = None # holds the stdscr from the curses library
+    sort_type = 0 # 0 - asending, 1 - descending
+    
     current_page = 1 # the current page ofcourse!
     records_per_page = 4 # ideal value for 80 x 25 terminal size 
+    
     selector = 1 # selector the indicator for the arrow up and arrow down
-    records_on_page = None # save the current records on the page
+    records_on_page = None # save the current records (actual data) on the page
     total_records_on_page = None # save the total current records on the page
+    phonebook_last_page = None
 
     def __init__(self):
         pass
 
+    # set last page
+    @classmethod
+    def set_last_page_phonebook(cls):
+        total = cls.get_total_records(0)
+        cls.phonebook_last_page = m.ceil(total/cls.records_per_page)
+
+    # show errors
     @classmethod
     def show_error(cls, error):
         # set the color pair, foreground, background

@@ -257,6 +257,7 @@ def search():
     Utility.stdscr.clear()
     load_main_details(Utility.records_per_page, 0)
     Utility.current_page = 1
+    Utility.set_selector(1)
 
 
 def next_page(file_to_read = 0):
@@ -429,8 +430,9 @@ def main(stdscr):
     # load records
     load_main_details(Utility.records_per_page, 0)
 
-    # set default selector value
+    # set default selector value and last page
     Utility.set_selector(1)
+    Utility.set_last_page_phonebook()
 
     # main event loop
     key = Utility.stdscr.getch()
@@ -441,6 +443,8 @@ def main(stdscr):
             # reset current page to 1
             Utility.current_page = 1
             add()
+            Utility.set_selector(1)
+            Utility.set_last_page_phonebook()
 
         # search records
         elif key == curses.KEY_F2:
@@ -469,6 +473,9 @@ def main(stdscr):
             elif Utility.sort_type == 1:
                 sort_by = 'Descending'
 
+            # set selector
+            Utility.set_selector(1)
+
             Utility.stdscr.addstr(23, 50, "Sort By: {}".format(sort_by))
 
         # escape to exit
@@ -478,10 +485,12 @@ def main(stdscr):
         # show previous records
         elif key == curses.KEY_F4:
             previous_page()
+            Utility.set_selector(1)
 
         # show next records
         elif key == curses.KEY_F5:
             next_page()
+            Utility.set_selector(1)
 
         # enter key for selecting a record
         elif key == 10:
@@ -489,18 +498,25 @@ def main(stdscr):
 
         # navigating records using arrow up
         elif key == curses.KEY_UP:
-            Utility.stdscr.addstr(23, 50, 'Pressed Up Key')
+            if Utility.selector > 1: # greater than the first page
+                Utility.selector -= 1
+                Utility.set_selector(Utility.selector)
+            else:
+                if Utility.current_page != 1:
+                    previous_page()
+                    Utility.selector = 1
+                    Utility.set_selector(Utility.selector)
 
-        # navigating records using arrow up
+        # navigating records using arrow down
         elif key == curses.KEY_DOWN:
-            if Utility.selector < Utility.records_per_page:
+            if Utility.selector < Utility.total_records_on_page: # less than the last page
                 Utility.selector += 1
                 Utility.set_selector(Utility.selector)
-            elif Utility.selector == Utility.records_per_page:
-                Utility.selector = 1
-                next_page()
-                Utility.set_selector(Utility.selector)
-            #Utility.stdscr.addstr(23, 50, 'Pressed Down Key')
+            else:
+                if Utility.current_page != Utility.phonebook_last_page:
+                    next_page()
+                    Utility.selector = 1
+                    Utility.set_selector(Utility.selector)
 
         # checks for window resize event
         elif curses.is_term_resized(y, x) == True:
