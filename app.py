@@ -551,7 +551,7 @@ def main(stdscr):
             else:
                 if Utility.current_page != 1:
                     previous_page()
-                    Utility.selector = 1
+                    Utility.selector = Utility.total_records_on_page
                     Utility.set_selector(Utility.selector)
 
         # navigating records using arrow down
