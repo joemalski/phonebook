@@ -115,7 +115,7 @@ def selected_record():
     # add header label
     Utility.stdscr.addstr(3, 20, '                 ')
     Utility.stdscr.attron(curses.color_pair(1))
-    Utility.stdscr.addstr(3, 20, 'SELCTED RECORD')
+    Utility.stdscr.addstr(3, 20, 'SELECTED RECORD')
     Utility.stdscr.attroff(curses.color_pair(1))
 
     # add input labels
