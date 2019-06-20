@@ -17,6 +17,7 @@ class Utility:
     records_per_page = 4 # ideal value for 80 x 25 terminal size 
     selector = 1 # selector the indicator for the arrow up and arrow down
     records_on_page = None # save the current records on the page
+    total_records_on_page = None # save the total current records on the page
 
     def __init__(self):
         pass
@@ -343,8 +344,9 @@ class Utility:
             y_offset += 4
             i += 1
 
-        # save current record on page
+        # save current record on page and number of records
         cls.records_on_page = records
+        cls.total_records_on_page = len(records)
 
     # save record
     @classmethod
