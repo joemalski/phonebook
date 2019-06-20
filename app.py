@@ -494,6 +494,8 @@ def main(stdscr):
 
         # enter key for selecting a record
         elif key == 10:
+            # Utility.records_on_page[Utility.selector - 1
+            # Next Mission!
             Utility.stdscr.addstr(23, 50, 'Pressed ENTER   ')
 
         # navigating records using arrow up
