@@ -226,8 +226,7 @@ def search():
     skins.main()
     skins.search()
 
-    # search input labels 
-    # *** Fix color and standardize it !!!
+    # display selection
     Utility.stdscr.attron(curses.color_pair(1))
     Utility.stdscr.addstr(5, 20, '[1]')
     Utility.stdscr.attroff(curses.color_pair(1))
@@ -401,7 +400,9 @@ def add():
     # refresh screen show records again
     Utility.stdscr.clear()
     load_main_details(Utility.records_per_page, 0)
+    Utility.set_selector(Utility.selector)
     Utility.current_page = 1
+
 
 def selected_record():
 
@@ -429,8 +430,29 @@ def selected_record():
     Utility.stdscr.attroff(curses.color_pair(1))
     Utility.stdscr.addstr(14, 25, ' - CANCEL')
 
-    # CONTINUE HERE !!!, create event loop for selection
+    # selected_record event loop
+    key = Utility.stdscr.getch()
+    while 1:
 
+        # 'e'=101 and 'E'=69
+        if key == 69 or key == 101:
+            Utility.stdscr.addstr(23, 50, 'selected e')
+            Utility.stdscr.getch()
+            break
+
+        # 'd'=100 and 'D'=68
+        elif key == 100 or key == 68:
+            Utility.stdscr.addstr(23, 50, 'selected d')
+            Utility.stdscr.getch()
+            break
+
+        elif key == 27:
+            break
+
+    # refresh screen show records again
+    Utility.stdscr.clear()
+    load_main_details(Utility.records_per_page, 0)
+    Utility.current_page = 1
 
 def load_main_details(records_per_page, offset, file_to_read = 0):
 
@@ -541,7 +563,7 @@ def main(stdscr):
         # enter key for selecting a record
         elif key == 10:            
             selected_record()
-            #Utility.stdscr.addstr(23, 50, 'Pressed ENTER   ')
+            Utility.set_selector(1)
 
         # navigating records using arrow up
         elif key == curses.KEY_UP:
