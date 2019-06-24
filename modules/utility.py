@@ -405,3 +405,26 @@ class Utility:
         elif option == 1:
             curses.curs_set(1)
             curses.echo()
+
+    # delete a record, basically skip the id then rewrite the files again
+    @classmethod
+    def delete_record(cls, id):
+        try:
+            raw_path = path.Path('flatfiles/')
+            phonebook = raw_path / 'phonebook.txt'
+            file_phonebook = open(phonebook, 'r')
+
+            records = []
+            for phone in file_phonebook.readlines():
+                record = ast.literal_eval(phone)
+                if record['id'] != id:
+                    records.append(phone)
+
+            file_phonebook.close()
+
+            file_phonebook = open(phonebook, 'w')
+            file_phonebook.writelines(records)
+            file_phonebook.close
+
+        except Exception as e:
+            cls.show_error(e)  

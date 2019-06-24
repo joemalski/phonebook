@@ -403,6 +403,36 @@ def add():
     Utility.set_selector(Utility.selector)
     Utility.current_page = 1
 
+def delete(record):
+    # show selected record skin
+    Utility.stdscr.clear()
+    skins.main()
+    skins.selected_record()
+
+    # show actual selected record
+    Utility.stdscr.addstr(5, 27, str(record['id']))
+    Utility.stdscr.addstr(6, 27, str(record['name']))
+    Utility.stdscr.addstr(7, 27, str(record['phone']))
+
+    Utility.stdscr.addstr(10, 20, 'ARE YOU SURE YOU WANT TO DELETE THIS RECORD ?')
+    Utility.stdscr.attron(curses.color_pair(1))
+    Utility.stdscr.addstr(12, 20, '[Y]')
+    Utility.stdscr.attroff(curses.color_pair(1))
+    Utility.stdscr.addstr(12, 23, ' - YES')
+    Utility.stdscr.attron(curses.color_pair(1))
+    Utility.stdscr.addstr(14, 20, '[N]')
+    Utility.stdscr.attroff(curses.color_pair(1))
+    Utility.stdscr.addstr(14, 23, ' - NO')
+
+    # '121'=y, '89'='Y' and '110'=n, '78'=N
+    while 1:
+        key = Utility.stdscr.getch()
+        if key == 89 or key == 121:
+            Utility.delete_record(record['id'])
+            break
+
+        elif key == 78 or key == 110:
+            break
 
 def selected_record():
 
@@ -442,8 +472,9 @@ def selected_record():
 
         # 'd'=100 and 'D'=68
         elif key == 100 or key == 68:
-            Utility.stdscr.addstr(23, 50, 'selected d')
-            Utility.stdscr.getch()
+            #Utility.stdscr.addstr(23, 50, 'selected d')
+            #Utility.stdscr.getch()
+            delete(selected_record)            
             break
 
         elif key == 27:
