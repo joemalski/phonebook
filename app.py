@@ -654,6 +654,7 @@ def main(stdscr):
 
         # navigating records using arrow up
         elif key == curses.KEY_UP:
+            curses.beep()
             if Utility.selector > 1: # greater than the first page
                 Utility.selector -= 1
                 Utility.set_selector(Utility.selector)
@@ -665,6 +666,7 @@ def main(stdscr):
 
         # navigating records using arrow down
         elif key == curses.KEY_DOWN:
+            curses.beep()
             if Utility.selector < Utility.total_records_on_page: # less than the last page
                 Utility.selector += 1
                 Utility.set_selector(Utility.selector)
