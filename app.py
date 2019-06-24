@@ -53,12 +53,14 @@ def search_by_name():
             # reset current page to 1
             Utility.current_page = 1
             add()
+            break
 
         # search records
         elif key == curses.KEY_F2:
             # reset current page to 1
             Utility.current_page = 1
             search()
+            break
 
         # sort order
         elif key == curses.KEY_F3:
@@ -100,6 +102,7 @@ def search_by_name():
         elif key == 10:            
             selected_record()
             Utility.set_selector(1)
+            break
 
         # navigating records using arrow up
         elif key == curses.KEY_UP:
@@ -184,12 +187,14 @@ def search_by_phone():
             # reset current page to 1
             Utility.current_page = 1
             add()
+            break
 
         # search records
         elif key == curses.KEY_F2:
             # reset current page to 1
             Utility.current_page = 1
             search()
+            break
 
         # sort order
         elif key == curses.KEY_F3:
@@ -212,31 +217,54 @@ def search_by_phone():
             elif Utility.sort_type == 1:
                 sort_by = 'Descending'
 
+            # set selector
+            Utility.set_selector(1)
+
             Utility.stdscr.addstr(23, 50, "Sort By: {}".format(sort_by))
 
         # show previous records
         elif key == curses.KEY_F4:
             previous_page(1)
+            Utility.set_selector(1)
 
         # show next records
         elif key == curses.KEY_F5:
             next_page(1)
+            Utility.set_selector(1)
+
+        # enter key for selecting a record
+        elif key == 10:            
+            selected_record()
+            Utility.set_selector(1)
+            break
+
+        # navigating records using arrow up
+        elif key == curses.KEY_UP:
+            curses.beep()
+            if Utility.selector > 1: # greater than the first page
+                Utility.selector -= 1
+                Utility.set_selector(Utility.selector)
+            else:
+                if Utility.current_page != 1:
+                    previous_page(1)
+                    Utility.selector = Utility.total_records_on_page
+                    Utility.set_selector(Utility.selector)
+
+        # navigating records using arrow down
+        elif key == curses.KEY_DOWN:
+            curses.beep()
+            if Utility.selector < Utility.total_records_on_page: # less than the last page
+                Utility.selector += 1
+                Utility.set_selector(Utility.selector)
+            else:
+                if Utility.current_page != Utility.phonebook_last_page:
+                    next_page(1)
+                    Utility.selector = 1
+                    Utility.set_selector(Utility.selector)
 
         # escape to exit
         elif key == 27:
             break
-
-        # enter key for selecting a record
-        elif key == 10:
-            Utility.stdscr.addstr(23, 50, 'Pressed ENTER   ')
-
-        # navigating records using arrow up
-        elif key == curses.KEY_UP:
-            Utility.stdscr.addstr(23, 50, 'Pressed Up Key  ')
-
-        # navigating records using arrow up
-        elif key == curses.KEY_DOWN:
-            Utility.stdscr.addstr(23, 50, 'Pressed Down Key')
 
         key = Utility.stdscr.getch()
 
