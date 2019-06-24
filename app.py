@@ -39,7 +39,8 @@ def search_by_name():
     Utility.cursor_display(0)
 
     # load records
-    load_main_details(Utility.records_per_page, 0, 1)   
+    load_main_details(Utility.records_per_page, 0, 1)
+    Utility.set_last_page_phonebook(1)
 
     # set default selector value
     Utility.set_selector(1)
@@ -53,6 +54,8 @@ def search_by_name():
             # reset current page to 1
             Utility.current_page = 1
             add()
+            Utility.set_selector(1)
+            Utility.set_last_page_phonebook(0)
             break
 
         # search records
@@ -173,7 +176,8 @@ def search_by_phone():
     Utility.cursor_display(0)
 
     # load records
-    load_main_details(Utility.records_per_page, 0, 1)   
+    load_main_details(Utility.records_per_page, 0, 1)
+    Utility.set_last_page_phonebook(1)
 
     # set default selector value
     Utility.set_selector(1)
@@ -187,6 +191,8 @@ def search_by_phone():
             # reset current page to 1
             Utility.current_page = 1
             add()
+            Utility.set_selector(1)
+            Utility.set_last_page_phonebook(0)
             break
 
         # search records
@@ -477,6 +483,8 @@ def delete(record):
         key = Utility.stdscr.getch()
         if key == 89 or key == 121:
             Utility.delete_record(record['id'])
+            Utility.set_selector(1)
+            Utility.set_last_page_phonebook(0)
             break
 
         elif key == 78 or key == 110:
@@ -657,7 +665,7 @@ def main(stdscr):
 
     # set default selector value and last page
     Utility.set_selector(1)
-    Utility.set_last_page_phonebook()
+    Utility.set_last_page_phonebook(0)
 
     # main event loop
     key = Utility.stdscr.getch()
@@ -669,7 +677,7 @@ def main(stdscr):
             Utility.current_page = 1
             add()
             Utility.set_selector(1)
-            Utility.set_last_page_phonebook()
+            Utility.set_last_page_phonebook(0)
 
         # search records
         elif key == curses.KEY_F2:

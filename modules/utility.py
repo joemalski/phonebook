@@ -28,8 +28,8 @@ class Utility:
 
     # set last page
     @classmethod
-    def set_last_page_phonebook(cls):
-        total = cls.get_total_records(0)
+    def set_last_page_phonebook(cls, file_to_read = 0):
+        total = cls.get_total_records(file_to_read)
         cls.phonebook_last_page = m.ceil(total/cls.records_per_page)
 
     # show errors
