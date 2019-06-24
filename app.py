@@ -491,8 +491,31 @@ def edit(record):
     # remove cursor
     Utility.cursor_display(0)
 
-    # edit the record
-    Utility.edit_record(record['id'], name, phone)
+    # checks if user wants to save or cancel
+    Utility.cursor_display(0)
+    Utility.stdscr.attron(curses.color_pair(1))
+    Utility.stdscr.addstr(14, 20, '[S]')
+    Utility.stdscr.attroff(curses.color_pair(1))
+    Utility.stdscr.addstr(14, 23, ' - SAVE')
+    Utility.stdscr.attron(curses.color_pair(1))
+    Utility.stdscr.addstr(16, 20, '[ESC]')
+    Utility.stdscr.attroff(curses.color_pair(1))
+    Utility.stdscr.addstr(16, 25, ' - CANCEL')
+    
+    key = None
+    
+    # 's'=115, 'S'=83 and ESC = 27
+    while (key != 83 and key != 115):
+
+        key = Utility.stdscr.getch()
+        
+        if key == 115 or key == 83:
+            # edit the record
+            Utility.edit_record(record['id'], name, phone)
+            break
+
+        elif key == 27:
+            break
 
 
 def selected_record():
