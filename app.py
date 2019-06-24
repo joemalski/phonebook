@@ -86,10 +86,12 @@ def search_by_name():
         # show previous records
         elif key == curses.KEY_F4:
             previous_page(1)
+            Utility.set_selector(1)
 
         # show next records
         elif key == curses.KEY_F5:
             next_page(1)
+            Utility.set_selector(1)
 
         # escape to exit
         elif key == 27:
