@@ -448,8 +448,9 @@ def edit(record):
     # display cursor
     Utility.cursor_display(1)
 
-    # name label
+    # display labels
     Utility.stdscr.addstr(10, 20, 'NEW NAME: ')
+    Utility.stdscr.addstr(11, 20, 'NEW PHONE: ')
 
     # accept and validate name
     Utility.stdscr.addstr(23, 50, 'Please enter a name.')
@@ -463,9 +464,6 @@ def edit(record):
             name = Utility.bytes_to_str(Utility.stdscr.getstr(10, 30, 30))
         else:
             break
-
-    # phone label
-    Utility.stdscr.addstr(11, 20, 'NEW PHONE: ')
 
     # accept and validate phone
     Utility.stdscr.addstr(23, 50, 'Please enter a phone number.')    
