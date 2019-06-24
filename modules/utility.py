@@ -19,9 +19,9 @@ class Utility:
     records_per_page = 4 # ideal value for 80 x 25 terminal size 
 
     selector = 1 # selector the indicator for the arrow up and arrow down
-    records_on_page = None # save the current records (actual data) on the page
-    total_records_on_page = None # save the total current records on the page
-    phonebook_last_page = None
+    records_on_page = 0 # save the current records (actual data) on the page
+    total_records_on_page = 0 # save the total current records on the page
+    phonebook_last_page = 0
 
     def __init__(self):
         pass
