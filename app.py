@@ -364,7 +364,7 @@ def add():
         elif set(phone).issubset(numbers) == False or len(phone) < 7:
             skins.clear_message()
             Utility.stdscr.addstr(23, 50, 'Incorrect Number.')
-            Utility.stdscr.addstr(6, 27, ' '*7)
+            Utility.stdscr.addstr(7, 27, ' '*7)
             Utility.stdscr.refresh()
             phone = Utility.bytes_to_str(Utility.stdscr.getstr(7, 27, 7))
         else:
