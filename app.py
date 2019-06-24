@@ -97,8 +97,9 @@ def search_by_name():
             Utility.set_selector(1)
 
         # enter key for selecting a record
-        elif key == 10:
-            Utility.stdscr.addstr(23, 50, 'Pressed ENTER   ')
+        elif key == 10:            
+            selected_record()
+            Utility.set_selector(1)
 
         # navigating records using arrow up
         elif key == curses.KEY_UP:
