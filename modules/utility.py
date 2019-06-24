@@ -428,3 +428,39 @@ class Utility:
 
         except Exception as e:
             cls.show_error(e)  
+
+    # edit a record, basically check the id and replace it then rewrite the files again
+    @classmethod
+    def edit_record(cls, id, name, phone):
+        try:
+
+            edit_record = {
+                'id': '',
+                'name': '',
+                'phone': ''
+            }
+
+            edit_record['id'] = str(id)
+            edit_record['name'] = name
+            edit_record['phone'] = phone
+
+            raw_path = path.Path('flatfiles/')
+            phonebook = raw_path / 'phonebook.txt'
+            file_phonebook = open(phonebook, 'r')
+
+            records = []
+            for phone in file_phonebook.readlines():
+                record = ast.literal_eval(phone)
+                if record['id'] != id:
+                    records.append(phone)
+                else:
+                    records.append(str(edit_record)+'\n')
+
+            file_phonebook.close()
+            
+            file_phonebook = open(phonebook, 'w')
+            file_phonebook.writelines(records)
+            file_phonebook.close
+
+        except Exception as e:
+            cls.show_error(e)  

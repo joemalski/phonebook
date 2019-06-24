@@ -434,6 +434,67 @@ def delete(record):
         elif key == 78 or key == 110:
             break
 
+def edit(record):
+    # show selected record skin
+    Utility.stdscr.clear()
+    skins.main()
+    skins.selected_record()
+
+    # show actual selected record
+    Utility.stdscr.addstr(5, 27, str(record['id']))
+    Utility.stdscr.addstr(6, 27, str(record['name']))
+    Utility.stdscr.addstr(7, 27, str(record['phone']))
+
+    # display cursor
+    Utility.cursor_display(1)
+
+    # name label
+    Utility.stdscr.addstr(10, 20, 'NEW NAME: ')
+
+    # accept and validate name
+    Utility.stdscr.addstr(23, 50, 'Please enter a name.')
+    name = Utility.bytes_to_str(Utility.stdscr.getstr(10, 30, 30))
+    while 1:
+        if name == '':
+            skins.clear_message()
+            Utility.stdscr.addstr(23, 50, 'Name must not be empty.')
+            Utility.stdscr.addstr(10, 30, ' '*30)
+            Utility.stdscr.refresh()
+            name = Utility.bytes_to_str(Utility.stdscr.getstr(10, 30, 30))
+        else:
+            break
+
+    # phone label
+    Utility.stdscr.addstr(11, 20, 'NEW PHONE: ')
+
+    # accept and validate phone
+    Utility.stdscr.addstr(23, 50, 'Please enter a phone number.')    
+    phone = Utility.bytes_to_str(Utility.stdscr.getstr(11, 31, 7))
+
+    numbers = set('0123456789')
+    while 1:
+        if phone == '':
+            skins.clear_message()
+            Utility.stdscr.addstr(23, 50, 'Number must not be empty.')
+            Utility.stdscr.addstr(11, 31, ' '*7)
+            Utility.stdscr.refresh()
+            phone = Utility.bytes_to_str(Utility.stdscr.getstr(11, 31, 7))
+        elif set(phone).issubset(numbers) == False or len(phone) < 7:
+            skins.clear_message()
+            Utility.stdscr.addstr(23, 50, 'Incorrect Number.')
+            Utility.stdscr.addstr(11, 31, ' '*7)
+            Utility.stdscr.refresh()
+            phone = Utility.bytes_to_str(Utility.stdscr.getstr(11, 31, 7))
+        else:
+            break
+
+    # remove cursor
+    Utility.cursor_display(0)
+
+    # edit the record
+    Utility.edit_record(record['id'], name, phone)
+
+
 def selected_record():
 
     # show selected record skin
@@ -466,8 +527,9 @@ def selected_record():
 
         # 'e'=101 and 'E'=69
         if key == 69 or key == 101:
-            Utility.stdscr.addstr(23, 50, 'selected e')
-            Utility.stdscr.getch()
+            edit(selected_record)
+            #Utility.stdscr.addstr(23, 50, 'selected e')
+            #Utility.stdscr.getch()
             break
 
         # 'd'=100 and 'D'=68
