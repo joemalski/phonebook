@@ -528,14 +528,10 @@ def selected_record():
         # 'e'=101 and 'E'=69
         if key == 69 or key == 101:
             edit(selected_record)
-            #Utility.stdscr.addstr(23, 50, 'selected e')
-            #Utility.stdscr.getch()
             break
 
         # 'd'=100 and 'D'=68
         elif key == 100 or key == 68:
-            #Utility.stdscr.addstr(23, 50, 'selected d')
-            #Utility.stdscr.getch()
             delete(selected_record)            
             break
 
