@@ -1,9 +1,0 @@
-{'id': '1', 'name': 'Joel Malinao', 'phone': '1234567'}
-{'id': '7', 'name': 'Joel Malinao', 'phone': '1234567'}
-{'id': '11', 'name': 'John Mac', 'phone': '1234567'}
-{'id': '13', 'name': 'Joel Joel', 'phone': '1234567'}
-{'id': '18', 'name': "Bogart D' Explorer", 'phone': '1234567'}
-{'id': '25', 'name': 'Bravo Johnny', 'phone': '1234567'}
-{'id': '26', 'name': 'Test y', 'phone': '1234567'}
-{'id': '29', 'name': 'Joemalski Doe', 'phone': '1234567'}
-{'id': '32', 'name': 'Python is cool!', 'phone': '1234567'}

@@ -54,7 +54,7 @@ def search_by_name():
         if key == curses.KEY_F1:
             # reset current page to 1
             Utility.current_page = 1
-            add()
+            found_records = add()
             Utility.set_selector(1)
             Utility.set_last_page_phonebook(0)
             break
@@ -192,7 +192,7 @@ def search_by_phone():
         if key == curses.KEY_F1:
             # reset current page to 1
             Utility.current_page = 1
-            add()
+            found_records = add()
             Utility.set_selector(1)
             Utility.set_last_page_phonebook(0)
             break
@@ -455,9 +455,11 @@ def add():
 
     # refresh screen show records again
     Utility.stdscr.clear()
-    load_main_details(Utility.records_per_page, 0)
+    found_records = load_main_details(Utility.records_per_page, 0)
     Utility.set_selector(Utility.selector)
     Utility.current_page = 1
+
+    return found_records
 
 def delete(record):
     # show selected record skin
@@ -683,7 +685,7 @@ def main(stdscr):
         if key == curses.KEY_F1:
             # reset current page to 1
             Utility.current_page = 1
-            add()
+            found_records = add()
             Utility.set_selector(1)
             Utility.set_last_page_phonebook(0)
 

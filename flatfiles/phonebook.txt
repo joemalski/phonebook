@@ -1,9 +1,10 @@
 {'id': '1', 'name': 'Joel Malinao', 'phone': '1234567'}
+{'id': '2', 'name': 'Vladimir Putin', 'phone': '1234567'}
 {'id': '3', 'name': 'Sergie', 'phone': '1231234'}
-{'id': '4', 'name': 'Joel Malinao', 'phone': '7654321'}
+{'id': '4', 'name': 'The quick brown fox jumps over', 'phone': '1234567'}
 {'id': '5', 'name': 'Joel Malinao', 'phone': '7654323'}
 {'id': '6', 'name': 'Bruno Mars', 'phone': '1231234'}
-{'id': '7', 'name': 'Joel Malinao', 'phone': '1234567'}
+{'id': '7', 'name': 'Joe Romano', 'phone': '1234567'}
 {'id': '8', 'name': 'Duff Mac', 'phone': '1231234'}
 {'id': '9', 'name': 'Joel Malinao', 'phone': '3334444'}
 {'id': '10', 'name': 'Duck Go', 'phone': '4445555'}
@@ -24,8 +25,8 @@
 {'id': '25', 'name': 'Bravo Johnny', 'phone': '1234567'}
 {'id': '26', 'name': 'Test y', 'phone': '1234567'}
 {'id': '27', 'name': 'Test Y', 'phone': '1111111'}
-{'id': '28', 'name': 'Joel Malinao - Marked!', 'phone': '1231234'}
-{'id': '29', 'name': 'Joemalski Doe', 'phone': '1234567'}
+{'id': '28', 'name': 'Joel Malinao', 'phone': '1231234'}
+{'id': '29', 'name': 'Joel Malinao', 'phone': '2342342'}
 {'id': '30', 'name': 'adsf', 'phone': '1111111'}
 {'id': '31', 'name': 'Joseph Patambag', 'phone': '2342345'}
-{'id': '32', 'name': 'Python is cool!', 'phone': '1234567'}
+
