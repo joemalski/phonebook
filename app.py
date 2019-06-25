@@ -644,12 +644,19 @@ def load_main_details(records_per_page, offset, file_to_read = 0):
         # print total records at the bottom
         total = Utility.get_total_records(file_to_read)
         Utility.stdscr.addstr(23, 17, "{} | PAGE: {}".format(total, Utility.current_page))
+
+        return 1
+
     else:
         Utility.stdscr.addstr(23, 17, '0')
         Utility.stdscr.addstr(23, 50, '0 records found')
 
-    # refresh screen
-    Utility.stdscr.refresh()
+        # refresh screen
+        Utility.stdscr.refresh()
+
+        return 0
+
+
 
 def main(stdscr):
 
@@ -661,11 +668,12 @@ def main(stdscr):
     y, x = Utility.stdscr.getmaxyx()
 
     # load records
-    load_main_details(Utility.records_per_page, 0)
+    found_records = load_main_details(Utility.records_per_page, 0)
 
     # set default selector value and last page
-    Utility.set_selector(1)
-    Utility.set_last_page_phonebook(0)
+    if found_records:
+        Utility.set_selector(1)
+        Utility.set_last_page_phonebook(0)
 
     # main event loop
     key = Utility.stdscr.getch()
@@ -686,7 +694,7 @@ def main(stdscr):
             search()
 
         # sort order
-        elif key == curses.KEY_F3:
+        elif key == curses.KEY_F3 and found_records:
 
             # toggle sort type value
             if Utility.sort_type == 0:
@@ -711,27 +719,23 @@ def main(stdscr):
 
             Utility.stdscr.addstr(23, 50, "Sort By: {}".format(sort_by))
 
-        # escape to exit
-        elif key == 27:
-            break
-
         # show previous records
-        elif key == curses.KEY_F4:
+        elif key == curses.KEY_F4 and found_records:
             previous_page()
             Utility.set_selector(1)
 
         # show next records
-        elif key == curses.KEY_F5:
+        elif key == curses.KEY_F5 and found_records:
             next_page()
             Utility.set_selector(1)
 
         # enter key for selecting a record
-        elif key == 10:            
+        elif key == 10 and found_records:      
             selected_record()
             Utility.set_selector(1)
 
         # navigating records using arrow up
-        elif key == curses.KEY_UP:
+        elif key == curses.KEY_UP and found_records:
             curses.beep()
             if Utility.selector > 1: # greater than the first page
                 Utility.selector -= 1
@@ -743,7 +747,7 @@ def main(stdscr):
                     Utility.set_selector(Utility.selector)
 
         # navigating records using arrow down
-        elif key == curses.KEY_DOWN:
+        elif key == curses.KEY_DOWN and found_records:
             curses.beep()
             if Utility.selector < Utility.total_records_on_page: # less than the last page
                 Utility.selector += 1
@@ -759,6 +763,10 @@ def main(stdscr):
             Utility.stdscr.clear()
             curses.resizeterm(25, 80)
             load_main_details(Utility.records_per_page, 0)
+
+        # escape to exit
+        elif key == 27:
+            break
 
         # capture keypress for main event loop
         key = Utility.stdscr.getch()
