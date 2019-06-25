@@ -664,8 +664,9 @@ def main(stdscr):
     load_main_details(Utility.records_per_page, 0)
 
     # set default selector value and last page
-    Utility.set_selector(1)
-    Utility.set_last_page_phonebook(0)
+    if Utility.total_records_on_page:
+        Utility.set_selector(1)
+        Utility.set_last_page_phonebook(0)
 
     # main event loop
     key = Utility.stdscr.getch()
@@ -686,7 +687,7 @@ def main(stdscr):
             search()
 
         # sort order
-        elif key == curses.KEY_F3:
+        elif key == curses.KEY_F3 and Utility.total_records_on_page:
 
             # toggle sort type value
             if Utility.sort_type == 0:
@@ -716,22 +717,22 @@ def main(stdscr):
             break
 
         # show previous records
-        elif key == curses.KEY_F4:
+        elif key == curses.KEY_F4 and Utility.total_records_on_page:
             previous_page()
             Utility.set_selector(1)
 
         # show next records
-        elif key == curses.KEY_F5:
+        elif key == curses.KEY_F5 and Utility.total_records_on_page:
             next_page()
             Utility.set_selector(1)
 
         # enter key for selecting a record
-        elif key == 10:            
+        elif key == 10 and Utility.total_records_on_page:            
             selected_record()
             Utility.set_selector(1)
 
         # navigating records using arrow up
-        elif key == curses.KEY_UP:
+        elif key == curses.KEY_UP and Utility.total_records_on_page:
             curses.beep()
             if Utility.selector > 1: # greater than the first page
                 Utility.selector -= 1
@@ -743,7 +744,7 @@ def main(stdscr):
                     Utility.set_selector(Utility.selector)
 
         # navigating records using arrow down
-        elif key == curses.KEY_DOWN:
+        elif key == curses.KEY_DOWN and Utility.total_records_on_page:
             curses.beep()
             if Utility.selector < Utility.total_records_on_page: # less than the last page
                 Utility.selector += 1
