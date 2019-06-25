@@ -17,8 +17,10 @@ def main():
     h, w = Utility.stdscr.getmaxyx()
 
     # title
-    title = GuiObject(h, w, 'M Y   P H O N E B O O K   v 1 . 0')
+    title = GuiObject(h, w, ' '*23 + 'M Y   P H O N E B O O K   v 1 . 0' + ' '*24)
+    Utility.stdscr.attron(curses.color_pair(1))
     Utility.stdscr.addstr(0, title.w_center_text(), title.text)
+    Utility.stdscr.attroff(curses.color_pair(1))
 
     # title line
     title_line = GuiObject(h, w, ('-' * 80))
@@ -26,7 +28,7 @@ def main():
 
     # search header label
     Utility.stdscr.addstr(3, 20, '                 ')
-    Utility.stdscr.attron(curses.color_pair(1))    
+    Utility.stdscr.attron(curses.color_pair(1))
     Utility.stdscr.addstr(3, 20, 'ALL PHONE RECORDS')
     Utility.stdscr.attroff(curses.color_pair(1))
 

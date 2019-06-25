@@ -1,7 +1,7 @@
-{'id': '1', 'name': 'Joel Malinao', 'phone': '1234567'}
+{'id': '1', 'name': 'John Doe', 'phone': '1234567'}
 {'id': '2', 'name': 'Vladimir Putin', 'phone': '1234567'}
-{'id': '3', 'name': 'Sergie', 'phone': '1231234'}
-{'id': '4', 'name': 'The quick brown fox jumps over', 'phone': '1234567'}
+{'id': '3', 'name': 'Sergie Williams', 'phone': '1231234'}
+{'id': '4', 'name': 'John Doe', 'phone': '1234567'}
 {'id': '5', 'name': 'Joel Malinao', 'phone': '7654323'}
 {'id': '6', 'name': 'Bruno Mars', 'phone': '1231234'}
 {'id': '7', 'name': 'Joe Romano', 'phone': '1234567'}
@@ -10,15 +10,15 @@
 {'id': '10', 'name': 'Duck Go', 'phone': '4445555'}
 {'id': '11', 'name': 'John Mac', 'phone': '1234567'}
 {'id': '12', 'name': 'Jake Snake', 'phone': '1122334'}
-{'id': '13', 'name': 'Joel Joel', 'phone': '1234567'}
-{'id': '14', 'name': 'Jo', 'phone': '1231234'}
-{'id': '15', 'name': 'ss', 'phone': '1212123'}
+{'id': '13', 'name': 'John Doe', 'phone': '1234567'}
+{'id': '14', 'name': 'John Doe', 'phone': '1231234'}
+{'id': '15', 'name': 'John Doe', 'phone': '1212123'}
 {'id': '16', 'name': 'Alex Mac', 'phone': '7657658'}
 {'id': '17', 'name': 'John Wick', 'phone': '1122334'}
-{'id': '18', 'name': "Bogart D' Explorer", 'phone': '1234567'}
+{'id': '18', 'name': 'John Doe', 'phone': '1234567'}
 {'id': '19', 'name': 'Randy Silva Jr.', 'phone': '2345678'}
-{'id': '20', 'name': 'I will be free', 'phone': '2342342'}
-{'id': '21', 'name': 'New Me!', 'phone': '1231234'}
+{'id': '20', 'name': 'John Doe', 'phone': '2342342'}
+{'id': '21', 'name': 'John Doe', 'phone': '1231234'}
 {'id': '22', 'name': 'John Bully', 'phone': '2342345'}
 {'id': '23', 'name': 'Michael Jordan', 'phone': '1231232'}
 {'id': '24', 'name': 'Papa Joe', 'phone': '1231234'}
@@ -26,7 +26,6 @@
 {'id': '26', 'name': 'Test y', 'phone': '1234567'}
 {'id': '27', 'name': 'Test Y', 'phone': '1111111'}
 {'id': '28', 'name': 'Joel Malinao', 'phone': '1231234'}
-{'id': '29', 'name': 'Joel Malinao', 'phone': '2342342'}
-{'id': '30', 'name': 'adsf', 'phone': '1111111'}
-{'id': '31', 'name': 'Joseph Patambag', 'phone': '2342345'}
-
+{'id': '29', 'name': 'John Doe', 'phone': '2342342'}
+{'id': '30', 'name': 'John Doe', 'phone': '1111111'}
+{'id': '31', 'name': 'Joseph Williams', 'phone': '2342345'}
