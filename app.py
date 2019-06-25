@@ -177,11 +177,12 @@ def search_by_phone():
     Utility.cursor_display(0)
 
     # load records
-    load_main_details(Utility.records_per_page, 0, 1)
-    Utility.set_last_page_phonebook(1)
+    found_records = load_main_details(Utility.records_per_page, 0, 1)    
 
     # set default selector value
-    Utility.set_selector(1)
+    if found_records:
+        Utility.set_selector(1)
+        Utility.set_last_page_phonebook(1)
 
     # seach name event loop
     key = Utility.stdscr.getch()
@@ -204,7 +205,7 @@ def search_by_phone():
             break
 
         # sort order
-        elif key == curses.KEY_F3:
+        elif key == curses.KEY_F3 and found_records:
 
             # toggle sort type value
             if Utility.sort_type == 0:
@@ -230,23 +231,23 @@ def search_by_phone():
             Utility.stdscr.addstr(23, 50, "Sort By: {}".format(sort_by))
 
         # show previous records
-        elif key == curses.KEY_F4:
+        elif key == curses.KEY_F4 and found_records:
             previous_page(1)
             Utility.set_selector(1)
 
         # show next records
-        elif key == curses.KEY_F5:
+        elif key == curses.KEY_F5 and found_records:
             next_page(1)
             Utility.set_selector(1)
 
         # enter key for selecting a record
-        elif key == 10:            
+        elif key == 10 and found_records:
             selected_record()
             Utility.set_selector(1)
             break
 
         # navigating records using arrow up
-        elif key == curses.KEY_UP:
+        elif key == curses.KEY_UP and found_records:
             curses.beep()
             if Utility.selector > 1: # greater than the first page
                 Utility.selector -= 1
@@ -258,7 +259,7 @@ def search_by_phone():
                     Utility.set_selector(Utility.selector)
 
         # navigating records using arrow down
-        elif key == curses.KEY_DOWN:
+        elif key == curses.KEY_DOWN and found_records:
             curses.beep()
             if Utility.selector < Utility.total_records_on_page: # less than the last page
                 Utility.selector += 1
