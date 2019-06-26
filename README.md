@@ -9,8 +9,9 @@ An "old school" phonebook in terminal using the curses library and saves data to
 - uses the curses library
 - terminal size must be 80x25 or greater
 
-To run the program:
-
+To run the program: 
 $ python3 app.py
+
+Note: Do not resizing the window will cause the program to crash if input is asked since the input can't detect screen resize event.
 
 
