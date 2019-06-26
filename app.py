@@ -17,6 +17,7 @@ def search_by_name():
 
     # display cursor
     Utility.cursor_display(1)
+    y, x = Utility.stdscr.getmaxyx()
 
     # accept and validate name search
     Utility.stdscr.addstr(6, 20, 'Name: ')
@@ -131,6 +132,13 @@ def search_by_name():
                     next_page(1)
                     Utility.selector = 1
                     Utility.set_selector(Utility.selector)
+
+        # checks for window resize event
+        elif curses.is_term_resized(y, x) == True:
+            Utility.stdscr.clear()
+            curses.resizeterm(25, 80)
+            load_main_details(Utility.records_per_page, 0, 1)
+            Utility.set_selector(Utility.selector)
 
         # escape to exit
         elif key == 27:
@@ -765,6 +773,7 @@ def main(stdscr):
             Utility.stdscr.clear()
             curses.resizeterm(25, 80)
             load_main_details(Utility.records_per_page, 0)
+            Utility.set_selector(Utility.selector)
 
         # escape to exit
         elif key == 27:
