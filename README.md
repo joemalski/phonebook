@@ -12,6 +12,7 @@ An "old school" phonebook in terminal using the curses library and saves data to
 To run the program: 
 $ python3 app.py
 
-Note: Do not resizing the window will cause the program to crash if input is asked since the input can't detect screen resize event.
+Note: Do not resize the terminal window while entering data. It will crash the program since the input can't handle
+screen resize event.
 
 
