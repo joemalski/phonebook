@@ -298,6 +298,7 @@ def search():
     Utility.stdscr.clear()
     skins.main()
     skins.search()
+    y, x = Utility.stdscr.getmaxyx()
 
     # display selection
     Utility.stdscr.attron(curses.color_pair(1))
@@ -331,6 +332,27 @@ def search():
             Utility.stdscr.addstr(23, 50, 'Search, by phone')
             search_by_phone()
             break
+
+        # checks for window resize event
+        elif curses.is_term_resized(y, x) == True:
+            Utility.stdscr.clear()
+            curses.resizeterm(25, 80)
+            skins.main()
+            skins.search()
+            
+            # display selection
+            Utility.stdscr.attron(curses.color_pair(1))
+            Utility.stdscr.addstr(5, 20, '[1]')
+            Utility.stdscr.attroff(curses.color_pair(1))
+            Utility.stdscr.addstr(5, 23, ' - SEARCH BY NAME')
+            Utility.stdscr.attron(curses.color_pair(1))
+            Utility.stdscr.addstr(7, 20, '[2]')
+            Utility.stdscr.attroff(curses.color_pair(1))
+            Utility.stdscr.addstr(7, 23, ' - SEARCH BY PHONE NUMBER')
+            Utility.stdscr.attron(curses.color_pair(1))
+            Utility.stdscr.addstr(9, 20, '[ESC]')
+            Utility.stdscr.attroff(curses.color_pair(1))
+            Utility.stdscr.addstr(9, 25, ' - CANCEL')
 
         elif key == 27:
             break
