@@ -707,6 +707,9 @@ def main(stdscr):
     curses.curs_set(False)
     y, x = Utility.stdscr.getmaxyx()
 
+    if y < 25 or x < 80:
+        return 'Error: Terminal screen size should be 80x25 or greater.'
+
     # load records
     found_records = load_main_details(Utility.records_per_page, 0)
 
@@ -816,7 +819,9 @@ def main(stdscr):
 # check files if it exist then run main wrapper of curses library
 msg = Utility.check_files_exists()
 if msg == True:
-    curses.wrapper(main)
+    error = curses.wrapper(main)
+    if error:
+        print(error)
 else:
     print(msg)
 
