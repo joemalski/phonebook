@@ -602,9 +602,9 @@ def selected_record():
     Utility.stdscr.addstr(14, 25, ' - CANCEL')
 
     # selected_record event loop
-    key = Utility.stdscr.getch()
+    key = None
     while 1:
-
+        key = Utility.stdscr.getch()
         # 'e'=101 and 'E'=69
         if key == 69 or key == 101:
             edit(selected_record)
