@@ -142,6 +142,7 @@ def search_by_name():
 
         # escape to exit
         elif key == 27:
+            Utility.set_last_page_phonebook(0)
             break
 
         key = Utility.stdscr.getch()
@@ -288,6 +289,7 @@ def search_by_phone():
 
         # escape to exit
         elif key == 27:
+            Utility.set_last_page_phonebook(0)
             break
 
         key = Utility.stdscr.getch()
